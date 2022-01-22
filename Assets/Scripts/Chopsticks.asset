@@ -15,12 +15,16 @@ MonoBehaviour:
   ChopsticksNormalHorizontalSpeed: 1
   ChopsticksNormalVerticalSpeed: 1
   AttackAnticipationDuration: 0.2
-  AttackDuration: 1
-  PostAttackDuration: 1
+  AttackDuration: 0.4
+  PostAttackDuration: 0.4
   MaxStamina: 1
   DefendStaminaCostPersec: 0.1
-  PostDefendDuration: 1
+  PostDefendDuration: 0.4
   IdleHitInformation:
-    HitForce: 50
-    HitDuration: 1
+    HitForce: 2
+    HitDuration: 0.5
+    StaminaCost: 0
+  AttackBaseHitInformation:
+    HitForce: 4
+    HitDuration: 0.5
     StaminaCost: 0

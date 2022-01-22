@@ -17,7 +17,7 @@ public class HitBoxRecorder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<IHittable>() != null)
+        if (other.GetComponent<IHittable>() != null && other.GetComponent<IHittable>() != TargetController.GetComponent<IHittable>())
         {
             TargetController.InRangeHittables.Remove(other.GetComponent<IHittable>());
         }

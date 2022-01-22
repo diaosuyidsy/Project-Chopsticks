@@ -65,7 +65,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
             get { return Context.m_Player.GetButton("Pick"); }
         }
 
-        public virtual void OnHit()
+        public virtual void OnHit(IHittable Enemy = null, bool isBlock = false)
         {
             
         }
@@ -73,7 +73,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnEnter()
         {
             base.OnEnter();
-            print(GetType().Name);
+            print(GetType().Name + Context.gameObject.name);
         }
     }
 
@@ -104,6 +104,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 }
             }
         }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.m_Rigidbody.velocity = Vector2.zero;
+        }
     }
 
     private class IdleState : ChopstickStates
@@ -124,9 +130,9 @@ public class ChopSticksController : MonoBehaviour, IHittable
             }
         }
 
-        public override void OnHit()
+        public override void OnHit(IHittable enemy, bool isBlock = false)
         {
-            base.OnHit();
+            base.OnHit(enemy);
             Context.m_HitInfo = Context.ChopstickData.IdleHitInformation;
             TransitionTo<ReflectedState>();
             return;
@@ -147,6 +153,14 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.FixedUpdate();
             var newPosition = Context.m_Rigidbody.position + new Vector2(m_HAxis * Context.ChopstickData.ChopsticksNormalHorizontalSpeed, m_VAxis * Context.ChopstickData.ChopsticksNormalVerticalSpeed) * Time.fixedDeltaTime;
             Context.m_Rigidbody.MovePosition(newPosition);
+        }
+
+        public override void OnHit(IHittable Enemy = null, bool isBlock = false)
+        {
+            base.OnHit(Enemy);
+            Context.m_HitInfo = Context.ChopstickData.AttackBaseHitInformation;
+            TransitionTo<ReflectedState>();
+            return;
         }
     }
 
@@ -204,16 +218,18 @@ public class ChopSticksController : MonoBehaviour, IHittable
             {
                 foreach (var hittable in Context.InRangeHittables)
                 {
-                    hittable.OnImpact();
+                    hittable.OnImpact(Context);
                 }
 
                 m_AttackedOnce = true;
             }
         }
 
-        public override void OnHit()
+        public override void OnHit(IHittable enemy, bool isBlock = false)
         {
-            base.OnHit();
+            if(!isBlock)
+                enemy.OnImpact(Context, true);
+            Context.m_HitInfo = Context.ChopstickData.AttackBaseHitInformation;
             TransitionTo<ReflectedState>();
             return;
         }
@@ -255,6 +271,15 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 return;
             }
         }
+
+        public override void OnHit(IHittable Enemy, bool isBlock = false)
+        {
+            base.OnHit(Enemy);
+            if (Enemy != null)
+            {
+                Enemy.OnImpact(Context, true);
+            }
+        }
     }
 
     private class PostDefendState : ChopstickStates
@@ -288,8 +313,8 @@ public class ChopSticksController : MonoBehaviour, IHittable
         }
     }
 
-    public void OnImpact()
+    public void OnImpact(IHittable Enemy, bool isBlock = false)
     {
-        (m_ChopstickFSM.CurrentState as ChopstickStates).OnHit();
+        (m_ChopstickFSM.CurrentState as ChopstickStates).OnHit(Enemy, isBlock);
     }
 }
