@@ -15,9 +15,10 @@ public class PotController : MonoBehaviour
     {
         
     }
+    
 
-    public void RotateForCertainAngle(bool direction, float angle)
+    public void RotateForCertainAngle(bool cw, float angle)
     {
-        transform.RotateAround();
+        transform.RotateAround(transform.position, Vector3.forward, cw? angle: -angle);
     }
 }
