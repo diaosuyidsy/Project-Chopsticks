@@ -87,7 +87,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnEnter()
         {
             base.OnEnter();
-            Context.m_Rigidbody.AddForce(Context.m_HitInfo.HitForce * -Context.transform.up, ForceMode2D.Impulse);
+            Context.m_Rigidbody.AddForce(Context.m_HitInfo.HitForce * Context.m_HitInfo.HiterDirection, ForceMode2D.Impulse);
             m_Timer = 0f;
         }
 
@@ -133,7 +133,8 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable enemy, bool isBlock = false)
         {
             base.OnHit(enemy);
-            Context.m_HitInfo = Context.ChopstickData.IdleHitInformation;
+            Context.m_HitInfo = new HitInformation(Context.ChopstickData.IdleHitInformation);
+            Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
             TransitionTo<ReflectedState>();
             return;
         }
@@ -158,7 +159,8 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable Enemy = null, bool isBlock = false)
         {
             base.OnHit(Enemy);
-            Context.m_HitInfo = Context.ChopstickData.AttackBaseHitInformation;
+            Context.m_HitInfo = new HitInformation(Context.ChopstickData.AttackBaseHitInformation);
+            Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
             TransitionTo<ReflectedState>();
             return;
         }
@@ -229,7 +231,8 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             if(!isBlock)
                 enemy.OnImpact(Context, true);
-            Context.m_HitInfo = Context.ChopstickData.AttackBaseHitInformation;
+            Context.m_HitInfo = new HitInformation(Context.ChopstickData.AttackBaseHitInformation);
+            Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
             TransitionTo<ReflectedState>();
             return;
         }
@@ -265,6 +268,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void Update()
         {
             base.Update();
+            Context.m_Rigidbody.velocity = Vector2.zero;
             if (!m_Defend)
             {
                 TransitionTo<PostDefendState>();
@@ -311,10 +315,24 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 }
             }
         }
+        
+        public override void OnHit(IHittable enemy, bool isBlock = false)
+        {
+            base.OnHit(enemy);
+            Context.m_HitInfo = new HitInformation(Context.ChopstickData.PostDefendHitInformation);
+            Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
+            TransitionTo<ReflectedState>();
+            return;
+        }
     }
 
     public void OnImpact(IHittable Enemy, bool isBlock = false)
     {
         (m_ChopstickFSM.CurrentState as ChopstickStates).OnHit(Enemy, isBlock);
+    }
+
+    public Vector2 GetHiterDirection()
+    {
+        return transform.up;
     }
 }

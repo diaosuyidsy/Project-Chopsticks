@@ -15,4 +15,5 @@ public class ChopstickScriptableObject : ScriptableObject
     public float PostDefendDuration = 1f;
     public HitInformation IdleHitInformation;
     public HitInformation AttackBaseHitInformation;
+    public HitInformation PostDefendHitInformation;
 }

@@ -9,6 +9,7 @@ public static class Utility
 public interface IHittable
 {
     void OnImpact(IHittable Enemy, bool isBlock = false);
+    Vector2 GetHiterDirection();
 }
 
 [System.Serializable]
@@ -17,4 +18,18 @@ public class HitInformation
     public float HitForce;
     public float HitDuration;
     public float StaminaCost;
+    public Vector2 HiterDirection;
+
+    public HitInformation(HitInformation copy)
+    {
+        HitForce = copy.HitForce;
+        HitDuration = copy.HitDuration;
+        StaminaCost = copy.StaminaCost;
+        HiterDirection = copy.HiterDirection;
+    }
+
+    public HitInformation()
+    {
+        
+    }
 }
