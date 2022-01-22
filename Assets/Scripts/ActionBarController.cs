@@ -5,6 +5,10 @@ using UnityEngine;
 public class ActionBarController : MonoBehaviour
 {
     private RectTransform _rectTransform;
+
+  //  private bool canConsume;
+
+   // float currentScale = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +16,23 @@ public class ActionBarController : MonoBehaviour
     }
 
     private Vector3 localScale;
-    public IEnumerator ConsumeActionBarOneTime(float value)
+
+    public bool ConsumeActionBarOneTime(float value)
+    {
+        if (_rectTransform.localScale.x< value)
+        {
+            return false;
+        }
+        else
+        {
+            StartCoroutine(ConsumeActionBarOneTimeRoutine(value));
+            return true;
+        }
+    }
+
+
+
+    public IEnumerator ConsumeActionBarOneTimeRoutine(float value)
     {
         while (_rectTransform.localScale.x >0 && value>=0)
         {
@@ -24,7 +44,7 @@ public class ActionBarController : MonoBehaviour
         }
     }
 
-    public void ConsumeActionBarContinuously()
+    public bool ConsumeActionBarContinuously()
     {
        if (_rectTransform.localScale.x >0)
         {
@@ -32,10 +52,15 @@ public class ActionBarController : MonoBehaviour
             localScale.x -= Time.deltaTime;
             localScale.x = Mathf.Max(0, localScale.x);
             _rectTransform.localScale = localScale;
+            return true;
         }
+       else
+       {
+           return false;
+       }
     }
 
-    public IEnumerator RecoverActionBar()
+    public IEnumerator RecoverActionBarRoutine()
     {
         while (_rectTransform.localScale.x <1)
         {
@@ -47,12 +72,18 @@ public class ActionBarController : MonoBehaviour
         }
     }
 
+    public bool RecoverActionBar()
+    {
+        StartCoroutine(RecoverActionBarRoutine());
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(ConsumeActionBarOneTime(0.1f));
+            ConsumeActionBarOneTime(0.1f);
         }
         if (Input.GetKey(KeyCode.V))
         {
@@ -62,9 +93,10 @@ public class ActionBarController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            StartCoroutine(RecoverActionBar());
+            RecoverActionBar();
         }
     }
-    
-    
+
+
+
 }
