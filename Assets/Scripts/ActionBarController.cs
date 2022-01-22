@@ -37,8 +37,8 @@ public class ActionBarController : MonoBehaviour
         while (_rectTransform.localScale.x >0 && value>=0)
         {
             localScale = _rectTransform.localScale;
-            localScale.x -= Time.deltaTime;
-            value -= Time.deltaTime;
+            localScale.x -= Time.fixedDeltaTime*0.1f;
+            value -= Time.fixedDeltaTime*0.1f;
             _rectTransform.localScale = localScale;
             yield return null;
         }
@@ -49,7 +49,7 @@ public class ActionBarController : MonoBehaviour
        if (_rectTransform.localScale.x >0)
         {
             localScale = _rectTransform.localScale;
-            localScale.x -= Time.deltaTime;
+            localScale.x -= Time.fixedDeltaTime*0.1f;
             localScale.x = Mathf.Max(0, localScale.x);
             _rectTransform.localScale = localScale;
             return true;
@@ -65,7 +65,8 @@ public class ActionBarController : MonoBehaviour
         while (_rectTransform.localScale.x <1)
         {
             localScale = _rectTransform.localScale;
-            localScale.x += Time.deltaTime;
+            localScale = _rectTransform.localScale;
+            localScale.x += Time.fixedDeltaTime*0.1f;
             localScale.x = Mathf.Min(1, localScale.x);
             _rectTransform.localScale = localScale;
             yield return null;
