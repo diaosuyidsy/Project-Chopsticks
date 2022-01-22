@@ -11,8 +11,10 @@ public interface IHittable
     void OnImpact();
 }
 
+[System.Serializable]
 public class HitInformation
 {
-    public Vector2 HitForce;
+    public float HitForce;
     public float HitDuration;
+    public float StaminaCost;
 }

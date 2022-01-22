@@ -13,4 +13,5 @@ public class ChopstickScriptableObject : ScriptableObject
     public float MaxStamina = 1f;
     public float DefendStaminaCostPersec = 0.1f;
     public float PostDefendDuration = 1f;
+    public HitInformation IdleHitInformation;
 }

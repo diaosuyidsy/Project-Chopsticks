@@ -14,7 +14,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
     private FSM<ChopSticksController> m_ChopstickFSM;
     private Rigidbody2D m_Rigidbody;
     private Player m_Player;
-    private HitInformation m_HitInfo;
+    private HitInformation m_HitInfo = new HitInformation();
 
     private void Awake()
     {
@@ -69,8 +69,17 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             
         }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            print(GetType().Name);
+        }
     }
 
+    /// <summary>
+    /// 被弹反的状态
+    /// </summary>
     private class ReflectedState : ChopstickStates
     {
         private float m_Timer;
@@ -78,7 +87,8 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnEnter()
         {
             base.OnEnter();
-            Context.m_Rigidbody.AddForce(Context.m_HitInfo.HitForce, ForceMode2D.Impulse);
+            Context.m_Rigidbody.AddForce(Context.m_HitInfo.HitForce * -Context.transform.up, ForceMode2D.Impulse);
+            m_Timer = 0f;
         }
 
         public override void Update()
@@ -117,6 +127,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit()
         {
             base.OnHit();
+            Context.m_HitInfo = Context.ChopstickData.IdleHitInformation;
             TransitionTo<ReflectedState>();
             return;
         }
@@ -143,6 +154,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
     {
         private float m_Timer;
 
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+        }
+
         public override void Update()
         {
             base.Update();
@@ -167,6 +184,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             base.OnEnter();
             m_AttackedOnce = false;
+            m_Timer = 0f;
         }
 
         public override void Update()
@@ -205,6 +223,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
     {
         private float m_Timer;
 
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+        }
+
         public override void Update()
         {
             base.Update();
@@ -236,6 +260,13 @@ public class ChopSticksController : MonoBehaviour, IHittable
     private class PostDefendState : ChopstickStates
     {
         private float m_Timer;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+        }
+
         public override void Update()
         {
             base.Update();
