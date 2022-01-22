@@ -638,8 +638,8 @@ SpringJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 2.63, y: 0}
-  m_ConnectedAnchor: {x: 2.4, y: 1.5}
+  m_Anchor: {x: 0.11, y: 0}
+  m_ConnectedAnchor: {x: -1.24, y: 1.5}
   m_AutoConfigureDistance: 0
   m_Distance: 1.5
   m_DampingRatio: 1
@@ -678,9 +678,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.28183612}
   serializedVersion: 2
-  m_Radius: 2.56
+  m_Radius: 1.3762903
 --- !u!212 &1455818049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -721,8 +721,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b1af90ce03a007349aa9428d646a0939, type: 3}
-  m_Color: {r: 0.40357995, g: 0.5660378, b: 0.32840872, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9a01b044110f0b045b2c690c92887108, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -740,8 +740,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455818044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.06, y: 1.6, z: -0.52}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: -2.171, y: 0.718, z: -0.52}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -756,9 +756,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1515467647}
   - component: {fileID: 1515467646}
-  - component: {fileID: 1515467645}
   - component: {fileID: 1515467644}
   - component: {fileID: 1515467643}
+  - component: {fileID: 1515467642}
   m_Layer: 0
   m_Name: foodA (2)
   m_TagString: Untagged
@@ -766,6 +766,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!70 &1515467642
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515467641}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.16643852, y: 0}
+  m_Size: {x: 1.7824346, y: 6.4000006}
+  m_Direction: 0
 --- !u!231 &1515467643
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -780,8 +796,8 @@ SpringJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -2.64, y: -0.24}
+  m_Anchor: {x: 0.01, y: 0}
+  m_ConnectedAnchor: {x: 1.64, y: -0.24}
   m_AutoConfigureDistance: 0
   m_Distance: 1
   m_DampingRatio: 1
@@ -807,22 +823,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1515467645
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515467641}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.56
 --- !u!212 &1515467646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -863,8 +863,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b1af90ce03a007349aa9428d646a0939, type: 3}
-  m_Color: {r: 0.2798149, g: 0.43336824, b: 0.4528302, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 17c0b0d2620d0de4999505fd8cc771c7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -882,7 +882,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515467641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8899999, y: -0.72, z: -0.52}
+  m_LocalPosition: {x: 1.772, y: -0.72, z: -0.52}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
