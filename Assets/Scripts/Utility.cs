@@ -8,7 +8,7 @@ public static class Utility
 
 public interface IHittable
 {
-    void OnImpact();
+    void OnImpact(IHittable Enemy, bool isBlock = false);
 }
 
 [System.Serializable]
