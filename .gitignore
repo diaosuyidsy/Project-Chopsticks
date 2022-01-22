@@ -57,3 +57,8 @@ fmod_editor.log
 /FMOD/FMODProject/**.unsaved
 /FMOD/FMODProject/**.cache
 /FMOD/FMODProject/**.restore
+Logs/AssetImportWorker0.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Logs/shadercompiler-UnityShaderCompiler.exe1.log
+Logs/shadercompiler-UnityShaderCompiler.exe2.log
