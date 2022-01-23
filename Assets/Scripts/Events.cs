@@ -24,11 +24,13 @@ public class ChopsticksClash : GameEvent
 
     public AttackType AttType;
     public Transform HandTransform;
+    public Vector3 ClashPoint;
 
-    public ChopsticksClash(AttackType attackType, Transform handTransform)
+    public ChopsticksClash(AttackType attackType, Transform handTransform, Vector3 clashPoint)
     {
         AttType = attackType;
         HandTransform = handTransform;
+        ClashPoint = clashPoint;
     }
 }
 
