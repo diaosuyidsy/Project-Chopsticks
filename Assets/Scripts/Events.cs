@@ -2,59 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HotPotBoiling : MonoBehaviour
+public class HotPotBoiling : GameEvent
 {
     public Transform HotPotTransform;
 }
 
-public class HotPotSpin : MonoBehaviour
+public class HotPotSpin : GameEvent
 {
     public Transform HotPotTransform;
 }
 
-public class HotPotHotAir : MonoBehaviour
+public class HotPotHotAir : GameEvent
 {
     public Transform HotPotTransform;
 }
 
-public class ChopsticksAttack : MonoBehaviour
+public class ChopsticksAttack : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
-public class ChopsticksDefence : MonoBehaviour
+public class ChopsticksDefence : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
-public class ChopsticksGetFood : MonoBehaviour
+public class ChopsticksGetFood : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
     public GameObject Food;
     public int Score;
 }
 
-public class ChopsticksGetNoting : MonoBehaviour
+public class ChopsticksNotGetFood : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
-public class ChopsticksNotGetFood : MonoBehaviour
+public class ChopsticksBounceBack : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
-public class ChopsticksBounceBack : MonoBehaviour
-{
-    public Transform ChopsticksTransform;
-}
-
-public class Win : MonoBehaviour
+public class Win : GameEvent
 {
     public int winner;
 }
 
-public class Lose : MonoBehaviour
+public class Lose : GameEvent
 {
     public int loser;
 }
