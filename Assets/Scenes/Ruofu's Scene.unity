@@ -1228,13 +1228,13 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621296084}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1000
   m_LinearDrag: 0
-  m_AngularDrag: 10
+  m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1254,13 +1254,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potRB: {fileID: 0}
-  torquePerRotate: 20
-  rotateCooldown: 0.5
+  velocityChangePerRotate: 3
+  rotateCooldown: 1
   foods:
   - {fileID: 0}
   - {fileID: 0}
   goodSpawner: {fileID: 1206462322}
   badSpawner: {fileID: 159243076}
+  currentAngularVelocity: 0
+  deceleratePerSecond: 3
 --- !u!212 &621296091
 SpriteRenderer:
   m_ObjectHideFlags: 0

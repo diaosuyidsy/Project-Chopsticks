@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,45 +6,56 @@ public class PotController : SingletonMono<PotController>
 {
     public Rigidbody2D potRB;
 
-    public float torquePerRotate = 20f;
+    public float velocityChangePerRotate = 2f;
     public float rotateCooldown = 1f;
     
     public List<FoodMovementControl> foods;
 
     public FoodSpawner goodSpawner;
     public FoodSpawner badSpawner;
-
+    
+    public float currentAngularVelocity = 0f;
+    public float deceleratePerSecond = 5f;
+    
     protected override void Awake()
     {
         base.Awake();
         
         if (!potRB) potRB = GetComponent<Rigidbody2D>();
         foods = new List<FoodMovementControl>();
+
+        // currentAngularVelocity = 10f;
     }
 
-    public void RotateForCertainAngle(bool cw, float angle)
+    private void FixedUpdate()
     {
-        transform.RotateAround(transform.position, Vector3.forward, cw? angle: -angle);
+        potRB.MoveRotation(transform.eulerAngles.z + currentAngularVelocity);
+
+        if (currentAngularVelocity != 0f)
+        {
+            var deltaVel = (deceleratePerSecond * Time.fixedDeltaTime) * (currentAngularVelocity > 0f ? -1f : 1f);
+
+            if ((currentAngularVelocity + deltaVel) * currentAngularVelocity < 0f)
+            {
+                currentAngularVelocity = 0f;
+            }
+            else
+            {
+                currentAngularVelocity += deltaVel;
+            }
+        }
+        
     }
-    
-    public void RotateForCertainAngleUsingForce(bool cw, float torque)
+
+    public void ChangeAngularVelocity(bool cw, float vel)
     {
-        potRB.AddTorque(cw ? torque : -torque, ForceMode2D.Impulse);
+        currentAngularVelocity += (cw ? vel : -vel);
     }
     
     public void RotateUsingDefaultTorque(bool cw)
     {
-        RotateForCertainAngleUsingForce(cw, torquePerRotate);
+        ChangeAngularVelocity(cw, velocityChangePerRotate);
     }
-
-    // Add an impulse which produces a change in angular velocity (specified in degrees).
-    public void AddTorqueImpulse(float angularChangeInDegrees)
-    {
-        var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * potRB.inertia;
-
-        potRB.AddTorque(impulse, ForceMode2D.Impulse);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {

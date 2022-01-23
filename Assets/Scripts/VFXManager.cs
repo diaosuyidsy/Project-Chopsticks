@@ -57,10 +57,12 @@ public class VFXManager : MonoBehaviour
     {
         if (e.AttType == ChopsticksClash.AttackType.AttackOnIdle)
         {
+            Debug.Log("--normal");
             CollideEffect.PlayNormal(e.ClashPoint);
         }
         else if(e.AttType == ChopsticksClash.AttackType.AttackOnPerfectDefend)
         {
+            Debug.Log("--perfect");
             CollideEffect.PlayPerfect(e.ClashPoint);
         }
     }
