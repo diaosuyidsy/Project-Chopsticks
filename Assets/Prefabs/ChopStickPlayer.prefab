@@ -693,6 +693,7 @@ MonoBehaviour:
   DirectionTransform: {fileID: 7263683012917972934}
   ActionBarController: {fileID: 0}
   HandTransform: {fileID: 7273122588904733859}
+  ClashPoint: {fileID: 8743787873515111777}
 --- !u!114 &2067775944988017371
 MonoBehaviour:
   m_ObjectHideFlags: 0
