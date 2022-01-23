@@ -2963,6 +2963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollideVFX
       objectReference: {fileID: 0}
+    - target: {fileID: 2939060354869945165, guid: c8ca08af14104704d9b8eb7f374fc5a5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2939060354869945167, guid: c8ca08af14104704d9b8eb7f374fc5a5, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -4326,6 +4330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 469928516225491569, guid: 7df3935ca0ecb7b469703e423f420ae2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 469928516225491570, guid: 7df3935ca0ecb7b469703e423f420ae2, type: 3}
       propertyPath: score
       value: -1
@@ -4391,6 +4399,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1381383078789899256, guid: 132d886108073c142ac5adc4e4274600, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1381383078789899259, guid: 132d886108073c142ac5adc4e4274600, type: 3}
       propertyPath: m_ConnectedRigidBody
       value: 
@@ -4398,6 +4410,10 @@ PrefabInstance:
     - target: {fileID: 1381383078789899261, guid: 132d886108073c142ac5adc4e4274600, type: 3}
       propertyPath: m_Name
       value: foodA (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381383078789899261, guid: 132d886108073c142ac5adc4e4274600, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 132d886108073c142ac5adc4e4274600, type: 3}
@@ -4411,6 +4427,10 @@ PrefabInstance:
     - target: {fileID: 1902342275856138051, guid: a8fbcb2cc40b5124ca110810f8637808, type: 3}
       propertyPath: m_Name
       value: foodA (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902342275856138051, guid: a8fbcb2cc40b5124ca110810f8637808, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1902342275856138052, guid: a8fbcb2cc40b5124ca110810f8637808, type: 3}
       propertyPath: m_RootOrder
@@ -4460,6 +4480,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 621296089}
+    - target: {fileID: 1902342275856138073, guid: a8fbcb2cc40b5124ca110810f8637808, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8fbcb2cc40b5124ca110810f8637808, type: 3}
 --- !u!1001 &2021341488227088757
@@ -4473,6 +4497,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 621296089}
+    - target: {fileID: 2021341488056195238, guid: 552f2b196930d814a8fb885b93c863a5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2021341488056195256, guid: 552f2b196930d814a8fb885b93c863a5, type: 3}
       propertyPath: m_Name
       value: foodA (3)
@@ -4590,6 +4618,10 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 621296089}
+    - target: {fileID: 4744179592827661847, guid: 190e40fe7fd5d3e478e0b32afd2f4334, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 190e40fe7fd5d3e478e0b32afd2f4334, type: 3}
 --- !u!1001 &7286637469486170625
@@ -4655,6 +4687,10 @@ PrefabInstance:
       propertyPath: score
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 7286637470377882142, guid: 942431b368d229648a1b8d74404115e0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 942431b368d229648a1b8d74404115e0, type: 3}
 --- !u!1001 &8242024107429100711
@@ -4671,6 +4707,10 @@ PrefabInstance:
     - target: {fileID: 8242024106183260571, guid: 07c09dbc3f624514699c2f1643a46542, type: 3}
       propertyPath: m_Name
       value: foodA (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242024106183260571, guid: 07c09dbc3f624514699c2f1643a46542, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8242024106183260645, guid: 07c09dbc3f624514699c2f1643a46542, type: 3}
       propertyPath: m_RootOrder
@@ -4716,6 +4756,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8242024106183260646, guid: 07c09dbc3f624514699c2f1643a46542, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07c09dbc3f624514699c2f1643a46542, type: 3}
 --- !u!1001 &8974428960632876868
@@ -4728,6 +4772,10 @@ PrefabInstance:
     - target: {fileID: 8974428959558421960, guid: 56656e8739f3c424d8310336373f398d, type: 3}
       propertyPath: m_Name
       value: foodA (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974428959558421960, guid: 56656e8739f3c424d8310336373f398d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8974428959558421961, guid: 56656e8739f3c424d8310336373f398d, type: 3}
       propertyPath: m_RootOrder
@@ -4777,5 +4825,9 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 621296089}
+    - target: {fileID: 8974428959558421974, guid: 56656e8739f3c424d8310336373f398d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56656e8739f3c424d8310336373f398d, type: 3}

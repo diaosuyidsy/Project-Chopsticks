@@ -27,7 +27,7 @@ public class FoodBase : MonoBehaviour
 
     public IEnumerator SetFoodActive()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         
         m_Renderer.sortingOrder = 2;
         
