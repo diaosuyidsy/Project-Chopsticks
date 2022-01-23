@@ -15,19 +15,20 @@ MonoBehaviour:
   ChopsticksNormalHorizontalSpeed: 15
   ChopsticksNormalVerticalSpeed: 15
   AttackAnticipationDuration: 0.2
-  AttackDuration: 0.4
-  PostAttackDuration: 0.4
-  MaxStamina: 1
+  AttackDuration: 0.12
+  AttackStaminaConsumption: 0.1
+  PostAttackDuration: 0.68
+  InitialDefendStaminaCost: 0.2
   DefendStaminaCostPersec: 0.1
   PostDefendDuration: 0.4
   IdleHitInformation:
-    HitForce: 20
-    HitDuration: 0.5
+    HitForce: 25
+    HitDuration: 0.3
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   AttackBaseHitInformation:
-    HitForce: 25
-    HitDuration: 0.8
+    HitForce: 20
+    HitDuration: 0.3
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   PostDefendHitInformation:
@@ -35,13 +36,25 @@ MonoBehaviour:
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
-  PickAnticipationMoveSpeed: 3
-  PickAnticipationDuration: 0.2
-  PickCancelDuration: 0.5
+  PickAnticipationMoveSpeed: 6
+  PickAnticipationDuration: 0.3
+  PickCancelDuration: 0.1
+  PickStaminaCost: 0.1
   PickAnticipationHitInformation:
     HitForce: 10
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
-  PickingDuration: 0.1
-  PickRecoveryDuration: 0.5
+  PickingDuration: 0.167
+  PickRecoveryDuration: 0.533
+  PerfectReflectHitInformation:
+    HitForce: 50
+    HitDuration: 0.5
+    StaminaCost: 0
+    HiterDirection: {x: 0, y: 0}
+  ReflectHitInformation:
+    HitForce: 30
+    HitDuration: 0.5
+    StaminaCost: 0
+    HiterDirection: {x: 0, y: 0}
+  PerfectDefendDuration: 0.2
