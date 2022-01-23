@@ -7,6 +7,14 @@ public class TimerManager : MonoBehaviour
 {
 
     public static int timerValue = 100;
+    public ScoreManager player1Score;
+    public ScoreManager player2Score;
+
+    public Text player1Text;
+    public Text player2Text;
+    public GameObject blur;
+    
+    
 
     private Text time;
     
@@ -30,6 +38,31 @@ public class TimerManager : MonoBehaviour
             timerValue--;
             yield return new WaitForSecondsRealtime(1f);
         }
+        blur.SetActive(true);
+
+        
         //here add finish game logic
+        if (player1Score.scoreValue > player2Score.scoreValue)
+        {
+
+            player1Text.text = "Win";
+            player2Text.text = "Lose";
+            
+        }else if (player1Score.scoreValue < player2Score.scoreValue)
+        {
+            player2Text.text = "Win";
+            player1Text.text = "Lose";
+        }
+        else
+        {
+            player2Text.text = "Win";
+            player1Text.text = "Win";
+        }
+        player1Score.enabled = false;
+        player2Score.enabled = false;
+        
+        
+        
+
     }
 }
