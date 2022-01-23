@@ -92,6 +92,5 @@ public class ChopsticksNotGetFood : GameEvent
 
 public class End : GameEvent
 {
-    public int winner;
-    public int loser;
+    
 }
