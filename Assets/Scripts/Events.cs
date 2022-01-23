@@ -19,34 +19,29 @@ public class HotPotHotAir : GameEvent
 
 public class ChopsticksAttack : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
 public class ChopsticksDefence : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
 public class ChopsticksGetFood : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
     public GameObject Food;
     public int Score;
 }
 
-public class ChopsticksGetNoting : GameEvent
-{
-    public Transform ChopsticksTransform;
-}
-
 public class ChopsticksNotGetFood : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
 public class ChopsticksBounceBack : GameEvent
 {
-    public Transform ChopsticksTransform;
+    public Transform HandTransform;
 }
 
 public class Win : GameEvent
