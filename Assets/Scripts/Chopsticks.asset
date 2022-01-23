@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853402c223c5ea44c93cf159e1145f5d, type: 3}
   m_Name: Chopsticks
   m_EditorClassIdentifier: 
-  ChopsticksNormalHorizontalSpeed: 9
-  ChopsticksNormalVerticalSpeed: 9
+  ChopsticksNormalHorizontalSpeed: 15
+  ChopsticksNormalVerticalSpeed: 15
   AttackAnticipationDuration: 0.2
   AttackDuration: 0.4
   PostAttackDuration: 0.4
@@ -36,7 +36,7 @@ MonoBehaviour:
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   PickAnticipationMoveSpeed: 3
-  PickAnticipationDuration: 1
+  PickAnticipationDuration: 0.2
   PickCancelDuration: 0.5
   PickAnticipationHitInformation:
     HitForce: 10
