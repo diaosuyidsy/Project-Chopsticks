@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class VFXManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static VFXManager instance;
+    public static AudioManager instance;
 
     private void Awake()
     {
@@ -13,6 +15,7 @@ public class VFXManager : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -44,7 +47,6 @@ public class VFXManager : MonoBehaviour
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
 
-    
     private void _onHotPotSpin(HotPotSpin e)
     {
         
