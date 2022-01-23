@@ -256,11 +256,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
 
             if (Context.InRangeHittables.Count != 0 && !m_AttackedOnce)
             {
-                foreach (var hittable in Context.InRangeHittables)
-                {
-                    hittable.OnImpact(Context);
-                }
-
+                Context.InRangeHittables[0].OnImpact(Context);
                 m_AttackedOnce = true;
             }
         }
@@ -270,21 +266,19 @@ public class ChopSticksController : MonoBehaviour, IHittable
             if(!isBlock)
                 enemy.OnImpact(Context, true);
 
-            if (!isReflected && !isPerfectReflected)
+            if (isBlock && !isReflected && !isPerfectReflected)
             {
                 Context.m_HitInfo = new HitInformation(Context.ChopstickData.AttackBaseHitInformation);
                 EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnAttack, Context.HandTransform, Context.ClashPoint.position));
             }
             
-            if (isPerfectReflected)
+            if (isBlock && isPerfectReflected)
             {
-                EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnPerfectDefend, Context.HandTransform, Context.ClashPoint.position));
                 Context.m_HitInfo = new HitInformation(Context.ChopstickData.PerfectReflectHitInformation);
             }
             
-            if(!isPerfectReflected && isReflected)
+            if(isBlock && !isPerfectReflected && isReflected)
             {
-                EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnDefend, Context.HandTransform, Context.ClashPoint.position));
                 Context.m_HitInfo = new HitInformation(Context.ChopstickData.ReflectHitInformation);
             }
             
@@ -365,11 +359,13 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.OnHit(Enemy);
             if (m_Timer <= Context.ChopstickData.PerfectDefendDuration)
             {
+                EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnPerfectDefend, Enemy.GetGameObject().GetComponent<ChopSticksController>().HandTransform, Enemy.GetGameObject().GetComponent<ChopSticksController>().ClashPoint.position));
                 Enemy?.OnImpact(Context, true, true, true);
                 Context.ActionBarController.RecoverActionBar(Context.ChopstickData.PerfectBlockRestoreStamina);
             }
             else
             {
+                EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnDefend, Enemy.GetGameObject().GetComponent<ChopSticksController>().HandTransform, Enemy.GetGameObject().GetComponent<ChopSticksController>().ClashPoint.position));
                 Enemy?.OnImpact(Context, true, true, false);
                 Context.ActionBarController.RecoverActionBar(Context.ChopstickData.BlockRestoreStamina);
             }
@@ -417,6 +413,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable enemy, bool isBlock, bool isReflected, bool isPerfectReflected)
         {
             base.OnHit(enemy);
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnIdle, Context.HandTransform, enemy.GetGameObject().GetComponent<ChopSticksController>().ClashPoint.position));
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.PostDefendHitInformation);
             Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
             TransitionTo<ReflectedState>();
@@ -473,6 +470,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable Enemy, bool isBlock, bool isReflected, bool isPerfectReflected)
         {
             base.OnHit(Enemy, isBlock);
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnIdle, Context.HandTransform, Enemy.GetGameObject().GetComponent<ChopSticksController>().ClashPoint.position));
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.PickAnticipationHitInformation);
             Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
             Context.Animator.SetBool("Pick", false);
@@ -553,6 +551,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable Enemy, bool isBlock, bool isReflected, bool isPerfectReflected)
         {
             base.OnHit(Enemy, isBlock);
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnIdle, Context.HandTransform, Enemy.GetGameObject().GetComponent<ChopSticksController>().ClashPoint.position));
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.PickAnticipationHitInformation);
             Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
             Context.Animator.SetBool("Pick", false);
