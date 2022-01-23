@@ -51,11 +51,11 @@ public class AudioManager : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/ChopstickBladeRanA");
         }
-        else if(e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
+        else if(e.AttType == ChopsticksClash.AttackType.AttackOnDefend)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/ChopstickBladeRanB");
         }
-        else if(e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
+        else if(e.AttType == ChopsticksClash.AttackType.AttackOnIdle)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CHOPSTICKBLADE");
         }
