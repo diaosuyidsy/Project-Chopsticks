@@ -57,4 +57,4 @@ MonoBehaviour:
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
-  PerfectDefendDuration: 0.15
+  PerfectDefendDuration: 0.18

@@ -480,9 +480,14 @@ public class ChopSticksController : MonoBehaviour, IHittable
             var nextpos = Vector3.Lerp(m_InitialPosition, m_TargetPosition,
                 m_Timer / Context.ChopstickData.PickCancelDuration);
             Context.m_Rigidbody.MovePosition(nextpos);
+        }
+
+        public override void Update()
+        {
+            base.Update();
             if (m_Timer < Context.ChopstickData.PickCancelDuration)
             {
-                m_Timer += Time.fixedDeltaTime;
+                m_Timer += Time.deltaTime;
                 if (m_Timer >= Context.ChopstickData.PickCancelDuration)
                 {
                     TransitionTo<IdleState>();
@@ -528,6 +533,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.OnHit(Enemy, isBlock);
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.PickAnticipationHitInformation);
             Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
+            Context.Animator.SetBool("Pick", false);
             TransitionTo<ReflectedState>();
         }
 
@@ -542,12 +548,6 @@ public class ChopSticksController : MonoBehaviour, IHittable
             {
                 EventManager.Instance.TriggerEvent(new ChopsticksNotGetFood());
             }
-        }
-        
-        public override void OnExit()
-        {
-            base.OnExit();
-            Context.Animator.SetBool("Pick", false);
         }
     }
 
