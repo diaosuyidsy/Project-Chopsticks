@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodInRange: []
+  TargetScoreManager: {fileID: 0}
 --- !u!1 &7310129458935971587
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +589,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.8613437, y: 1.5506625}
+  m_Offset: {x: 1.8613437, y: 0.21553302}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -599,7 +600,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.9203403, y: 7.400877}
+  m_Size: {x: 3.9203403, y: 4.730618}
   m_EdgeRadius: 0
 --- !u!114 &8348243485675652873
 MonoBehaviour:
@@ -688,6 +689,8 @@ MonoBehaviour:
   Animator: {fileID: 6427338008614740523}
   HitBox: {fileID: 8348243485675652875}
   DirectionTransform: {fileID: 7263683012917972934}
+  ActionBarController: {fileID: 0}
+  HandTransform: {fileID: 0}
 --- !u!1 &8450139828920237942
 GameObject:
   m_ObjectHideFlags: 0
