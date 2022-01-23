@@ -70,4 +70,5 @@ public class MenuManager : MonoBehaviour
         FMODUnity.RuntimeManager.GetBus("bus:/Music").setVolume(musicSlider.GetComponent<Slider>().value = 0.5f);
         FMODUnity.RuntimeManager.GetBus("bus:/Sounds").setVolume(SFXSlider.GetComponent<Slider>().value = 0.5f);
     }
+    
 }

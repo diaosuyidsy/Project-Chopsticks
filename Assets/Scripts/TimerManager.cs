@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class TimerManager : MonoBehaviour
 {
 
-    public static int timerValue = 100;
+    public static int timerValue = 10;
     public ScoreManager player1Score;
     public ScoreManager player2Score;
 
     public Text player1Text;
     public Text player2Text;
     public GameObject blur;
+    public GameObject startbutton;
     
     
 
@@ -60,6 +61,7 @@ public class TimerManager : MonoBehaviour
         }
         player1Score.enabled = false;
         player2Score.enabled = false;
+        startbutton.SetActive(true);
         
         
         

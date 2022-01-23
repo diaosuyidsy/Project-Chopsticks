@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     private Text score;
     
+    
     // Start is called before the first frame update
     void Start()
     {
