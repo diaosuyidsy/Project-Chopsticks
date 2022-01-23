@@ -10,9 +10,11 @@ public class ActionBarController : MonoBehaviour
     //public float recoverSpeed= 0.1f;
     public float recoverPulse = 1f;
     public float RecoverSpeed = 1f;
+   // private float realProgress = 1f;
     
 
     private float consumeStaminaBarTime;
+    public float zeroStaminaWaitingTime = 2f;
   
 
   //  private bool canConsume;
@@ -51,6 +53,12 @@ public class ActionBarController : MonoBehaviour
             localScale.x -= Time.fixedDeltaTime*0.1f;
             value -= Time.fixedDeltaTime*0.1f;
             _rectTransform.localScale = localScale;
+            if (_rectTransform.localScale.x == 0)
+            {
+                canRecoverStamina = false;
+            }
+
+            //  realProgress = localScale.x;
             yield return null;
         }
 
@@ -71,7 +79,7 @@ public class ActionBarController : MonoBehaviour
         }
        else
        {
-          // canRecoverStamina = true;
+           canRecoverStamina = false;
            return false;
        }
     }
@@ -111,6 +119,10 @@ public class ActionBarController : MonoBehaviour
     }
 
     private float recoverTimer = 0f;
+
+    private float noStaminaTimer = 0f;
+
+    private bool canRecoverStamina = true;
     // Update is called once per frame
     void Update()
     {
@@ -124,12 +136,22 @@ public class ActionBarController : MonoBehaviour
            ConsumeActionBarContinuously(0.01f);
         }
 
-
-        if ((Time.realtimeSinceStartup - consumeStaminaBarTime) > recoverPulse)
+   
+        if ((Time.realtimeSinceStartup - consumeStaminaBarTime) > recoverPulse && canRecoverStamina)
         {
             RecoverActionBar(RecoverSpeed);
         }
-        
+
+        if (!canRecoverStamina)
+        {
+            noStaminaTimer += Time.deltaTime;
+            if (noStaminaTimer > zeroStaminaWaitingTime)
+            {
+                noStaminaTimer = 0f;
+                canRecoverStamina = true;
+            }
+        }
+
     }
 
 

@@ -9,6 +9,7 @@ public class FoodSpawner : MonoBehaviour
 {
 
     public List<FoodBase> foods;
+    public int allowedActiveFoodCount = 4;
 
     public int activeFoodCount = 0;
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class FoodSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (activeFoodCount < 2 && foods.Count>0)
+            if (activeFoodCount < allowedActiveFoodCount && foods.Count>0)
             {
                 int rand = Random.Range(0, foods.Count - 1);
                 FoodBase selectedFood = foods[rand];
