@@ -9,17 +9,17 @@ public class HitBoxRecorder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<IHittable>() != null)
+        if (other.GetComponentInParent<IHittable>() != null && other.GetComponentInParent<IHittable>() != TargetController.GetComponent<IHittable>())
         {
-            TargetController.InRangeHittables.Add(other.GetComponent<IHittable>());
+            TargetController.InRangeHittables.Add(other.GetComponentInParent<IHittable>());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<IHittable>() != null && other.GetComponent<IHittable>() != TargetController.GetComponent<IHittable>())
+        if (other.GetComponentInParent<IHittable>() != null && other.GetComponentInParent<IHittable>() != TargetController.GetComponent<IHittable>())
         {
-            TargetController.InRangeHittables.Remove(other.GetComponent<IHittable>());
+            TargetController.InRangeHittables.Remove(other.GetComponentInParent<IHittable>());
         }
     }
 }
