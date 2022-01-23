@@ -1,48 +1,22 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class PotController : MonoBehaviour
+public class PotController : SingletonMono<PotController>
 {
-    private Rigidbody2D rb2d;
+    public Rigidbody2D potRB;
 
-    public float torque = 5f;
+    public float torquePerRotate = 20f;
+    public float rotateCooldown = 1f;
+    
+    public List<FoodMovementControl> foods;
 
-    private float angularVelocity;
-
-    public  List<FoodMovementControl> foods;
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        base.Awake();
+        
+        if (!potRB) potRB = GetComponent<Rigidbody2D>();
         foods = new List<FoodMovementControl>();
     }
-    
-    
- 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-          //  RotateForCertainAngle(true, 45);
-          RotateForCertainAngleUsingForce(true, torque);
-        //  RotateFoods();
-        }
-        else if(Input.GetKeyDown(KeyCode.D))
-        {
-            //RotateForCertainAngle(false, 45);
-            RotateForCertainAngleUsingForce(false, torque);
-        //    RotateFoods();
-        }
-
-      //  angularVelocity = rb2d.angularVelocity;
-
-    }
-    
 
     public void RotateForCertainAngle(bool cw, float angle)
     {
@@ -51,18 +25,21 @@ public class PotController : MonoBehaviour
     
     public void RotateForCertainAngleUsingForce(bool cw, float torque)
     {
-        rb2d.AddTorque(cw ? torque : -torque, ForceMode2D.Impulse);
+        potRB.AddTorque(cw ? torque : -torque, ForceMode2D.Impulse);
     }
     
-    
+    public void RotateUsingDefaultTorque(bool cw)
+    {
+        RotateForCertainAngleUsingForce(cw, torquePerRotate);
+    }
+
     // Add an impulse which produces a change in angular velocity (specified in degrees).
     public void AddTorqueImpulse(float angularChangeInDegrees)
-        {
-            rb2d = GetComponent<Rigidbody2D>();
-            var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * rb2d.inertia;
+    {
+        var impulse = (angularChangeInDegrees * Mathf.Deg2Rad) * potRB.inertia;
 
-            rb2d.AddTorque(impulse, ForceMode2D.Impulse);
-        }
+        potRB.AddTorque(impulse, ForceMode2D.Impulse);
+    }
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,17 +50,15 @@ public class PotController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    /*private void OnTriggerStay2D(Collider2D other)
     {
        /* if (other.name.Contains("food"))
         {
             Vector2 dir = Vector2.Perpendicular((Vector2) (other.transform.position - transform.position).normalized);
             other.GetComponent<FoodMovementControl>().Move(dir * angularVelocity);
         }
-        */
+        #1#
     }
-    
-    
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -92,7 +67,7 @@ public class PotController : MonoBehaviour
          //   other.gameObject.GetComponent<FoodMovementControl>().Move(((Vector2)other.gameObject.transform.position -other.GetContact(0).point).normalized *rb2d.angularVelocity );
           //  other.gameObject.GetComponent<Rigidbody2D>().velocity *= 0.1f;
         }
-    }
+    }*/
 
     public void RotateFoods()
     {
@@ -100,7 +75,7 @@ public class PotController : MonoBehaviour
         {
             Vector2 dir = Vector2.Perpendicular((Vector2) (food.transform.position - transform.position).normalized);
             dir = (Vector2)(transform.position - food.transform.position).normalized * 0.5f + dir * 0.5f; 
-            food.Move(dir * rb2d.angularVelocity);
+            food.Move(dir * potRB.angularVelocity);
         }
     }
 }

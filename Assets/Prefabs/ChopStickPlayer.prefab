@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 8348243486688767663}
   - component: {fileID: 8348243486688767660}
   - component: {fileID: 8348243486688767661}
+  - component: {fileID: 2067775944988017371}
   m_Layer: 3
   m_Name: ChopStickPlayer
   m_TagString: Untagged
@@ -691,6 +692,19 @@ MonoBehaviour:
   DirectionTransform: {fileID: 7263683012917972934}
   ActionBarController: {fileID: 0}
   HandTransform: {fileID: 7273122588904733859}
+--- !u!114 &2067775944988017371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8348243486688767633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b2437d734533f4d812e19c94fada69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftSpinClockWise: 0
 --- !u!1 &8450139828920237942
 GameObject:
   m_ObjectHideFlags: 0

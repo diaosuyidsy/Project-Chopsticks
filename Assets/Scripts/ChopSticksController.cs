@@ -19,7 +19,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
     
     private FSM<ChopSticksController> m_ChopstickFSM;
     private Rigidbody2D m_Rigidbody;
-    private Player m_Player;
+    public Player player;
     private HitInformation m_HitInfo = new HitInformation();
     private float m_PickMovedDuration;
 
@@ -28,7 +28,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         m_ChopstickFSM = new FSM<ChopSticksController>(this);
         m_ChopstickFSM.TransitionTo<IdleState>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
-        m_Player = ReInput.players.GetPlayer(PlayerNumber);
+        player = ReInput.players.GetPlayer(PlayerNumber);
     }
 
     private void Update()
@@ -50,26 +50,26 @@ public class ChopSticksController : MonoBehaviour, IHittable
     {
         protected float m_HAxis
         {
-            get { return Context.m_Player.GetAxis("LeftStickHorizontal"); }
+            get { return Context.player.GetAxis("LeftStickHorizontal"); }
         }
         protected float m_VAxis
         {
-            get { return Context.m_Player.GetAxis("LeftStickVertical"); }
+            get { return Context.player.GetAxis("LeftStickVertical"); }
         }
 
         protected bool m_Attack
         {
-            get { return Context.m_Player.GetButton("Attack"); }
+            get { return Context.player.GetButton("Attack"); }
         }
         
         protected bool m_Defend
         {
-            get { return Context.m_Player.GetButton("Defend"); }
+            get { return Context.player.GetButton("Defend"); }
         }
         
         protected bool m_Pick
         {
-            get { return Context.m_Player.GetButton("Pick"); }
+            get { return Context.player.GetButton("Pick"); }
         }
 
         public virtual void OnHit(IHittable Enemy = null, bool isBlock = false, bool isReflected = false, bool isPerfectReflected = false)

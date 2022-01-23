@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 621296086}
   - component: {fileID: 621296093}
   m_Layer: 7
-  m_Name: pot (1)
+  m_Name: HotPot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -914,7 +914,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb3cca87ac73fd4eb482fee751007af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: 10
+  potRB: {fileID: 0}
+  torquePerRotate: 20
+  rotateCooldown: 0.5
   foods:
   - {fileID: 0}
   - {fileID: 0}
@@ -2093,6 +2095,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2067775944988017371, guid: 3987e184cfa8304428b67ee6902d8fd4, type: 3}
+      propertyPath: leftSpinClockWise
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3210742549993404992, guid: 3987e184cfa8304428b67ee6902d8fd4, type: 3}
       propertyPath: TargetScoreManager
       value: 
