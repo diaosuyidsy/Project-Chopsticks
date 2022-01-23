@@ -126,7 +126,7 @@ public class ActionBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+    /*    if (Input.GetKeyDown(KeyCode.Space))
         {
             ConsumeActionBarOneTime(0.1f);
         }
@@ -135,7 +135,7 @@ public class ActionBarController : MonoBehaviour
            // StartCoroutine(ConsumeActionBarContinuously());
            ConsumeActionBarContinuously(0.01f);
         }
-
+*/
    
         if ((Time.realtimeSinceStartup - consumeStaminaBarTime) > recoverPulse && canRecoverStamina)
         {
