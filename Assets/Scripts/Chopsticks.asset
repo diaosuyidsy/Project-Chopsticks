@@ -22,26 +22,26 @@ MonoBehaviour:
   DefendStaminaCostPersec: 0.05
   PostDefendDuration: 0.3
   IdleHitInformation:
-    HitForce: 100
+    HitForce: 120
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   AttackBaseHitInformation:
-    HitForce: 120
+    HitForce: 140
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   PostDefendHitInformation:
-    HitForce: 120
+    HitForce: 140
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
-  PickAnticipationMoveSpeed: 0
+  PickAnticipationMoveSpeed: 2
   PickAnticipationDuration: 0.66
   PickCancelDuration: 0.1
   PickStaminaCost: 0.1
   PickAnticipationHitInformation:
-    HitForce: 100
+    HitForce: 160
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
@@ -53,8 +53,9 @@ MonoBehaviour:
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   ReflectHitInformation:
-    HitForce: 100
+    HitForce: 160
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
-  PerfectDefendDuration: 0.18
+  PerfectDefendDuration: 0.2
+  RotateStaminaCost: 0.2
