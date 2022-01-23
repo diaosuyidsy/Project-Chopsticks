@@ -376,7 +376,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void Update()
         {
             base.Update();
-            if (m_Defend)
+            if (m_Defend && Context.ActionBarController.ConsumeActionBarOneTime(Context.ChopstickData.InitialDefendStaminaCost))
             {
                 TransitionTo<DefendState>();
                 return;
