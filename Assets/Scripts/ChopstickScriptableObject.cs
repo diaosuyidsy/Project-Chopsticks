@@ -27,6 +27,7 @@ public class ChopstickScriptableObject : ScriptableObject
     public HitInformation PerfectReflectHitInformation;
     public HitInformation ReflectHitInformation;
     public float PerfectDefendDuration = 0.1f;
-
     public float RotateStaminaCost = 0.2f;
+    public float PerfectBlockRestoreStamina = -0.2f;
+    public float BlockRestoreStamina = 12f;
 }
