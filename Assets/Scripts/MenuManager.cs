@@ -40,12 +40,12 @@ public class MenuManager : MonoBehaviour
     // when music volumn is changed
     void OnMusicChange()
     {
-
+        float value = musicSlider.GetComponent<Slider>().value;
     }
 
     // when sound effect volumn is changed
     void OnSFXChange()
     {
-
+        float value = SFXSlider.GetComponent<Slider>().value;
     }
 }
