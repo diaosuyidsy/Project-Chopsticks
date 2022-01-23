@@ -24,8 +24,7 @@ public class AudioManager : MonoBehaviour
         EventManager.Instance.AddHandler<ChopsticksClash>(_onChopsticksAttack);
         EventManager.Instance.AddHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.AddHandler<Win>(_onWin);
-        EventManager.Instance.AddHandler<Lose>(_onLose);
+        EventManager.Instance.AddHandler<End>(_onEnd);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
     
@@ -35,8 +34,7 @@ public class AudioManager : MonoBehaviour
         EventManager.Instance.RemoveHandler<ChopsticksClash>(_onChopsticksAttack);
         EventManager.Instance.RemoveHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.RemoveHandler<Win>(_onWin);
-        EventManager.Instance.RemoveHandler<Lose>(_onLose);
+        EventManager.Instance.RemoveHandler<End>(_onEnd);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
 
@@ -81,12 +79,8 @@ public class AudioManager : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/ChopStciksNull");
     }
-    private void _onWin(Win e)
+    private void _onEnd(End e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Win");
-    }
-    private void _onLose(Lose e)
-    {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Lose");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Music/EndMusic");
     }
 }

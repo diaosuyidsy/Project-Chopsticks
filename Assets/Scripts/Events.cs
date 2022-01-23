@@ -90,12 +90,8 @@ public class ChopsticksNotGetFood : GameEvent
 }
 
 
-public class Win : GameEvent
+public class End : GameEvent
 {
     public int winner;
-}
-
-public class Lose : GameEvent
-{
     public int loser;
 }

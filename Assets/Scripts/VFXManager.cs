@@ -27,8 +27,7 @@ public class VFXManager : MonoBehaviour
         EventManager.Instance.AddHandler<ChopsticksDefenceCancel>(_onChopsticksDefenceCancel);
         EventManager.Instance.AddHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.AddHandler<Win>(_onWin);
-        EventManager.Instance.AddHandler<Lose>(_onLose);
+        EventManager.Instance.AddHandler<End>(_onEnd);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
     
@@ -42,8 +41,6 @@ public class VFXManager : MonoBehaviour
         EventManager.Instance.RemoveHandler<ChopsticksStartAttacking>(_onChopsticksStartAttack);
         EventManager.Instance.RemoveHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.RemoveHandler<Win>(_onWin);
-        EventManager.Instance.RemoveHandler<Lose>(_onLose);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
 
@@ -96,11 +93,7 @@ public class VFXManager : MonoBehaviour
     {
         
     }
-    private void _onWin(Win e)
-    {
-        
-    }
-    private void _onLose(Lose e)
+    private void _onEnd(End e)
     {
         
     }
