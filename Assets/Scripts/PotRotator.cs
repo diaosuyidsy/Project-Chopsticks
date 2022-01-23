@@ -10,6 +10,7 @@ public class PotRotator : MonoBehaviour
     private ChopstickScriptableObject m_Data;
 
     public bool leftSpinClockWise;
+    public Animator Animator;
     
     private float m_Timer = 0f;
 
@@ -39,12 +40,14 @@ public class PotRotator : MonoBehaviour
             if (m_LeftRotate && m_ActionBarController.ConsumeActionBarOneTime(m_Data.RotateStaminaCost))
             {
                 PotController.singleton.RotateUsingDefaultTorque(leftSpinClockWise);
+                Animator.SetTrigger("cw");
                 m_Timer = 0f;
             }
         
             if (m_RightRotate && m_ActionBarController.ConsumeActionBarOneTime(m_Data.RotateStaminaCost))
             {
                 PotController.singleton.RotateUsingDefaultTorque(!leftSpinClockWise);
+                Animator.SetTrigger("ccw");
                 m_Timer = 0f;
             }
         }

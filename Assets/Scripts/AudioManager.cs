@@ -68,7 +68,14 @@ public class AudioManager : MonoBehaviour
    
     private void _onChopsticksGetFood(ChopsticksGetFood e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Score");
+        if (e.Score > 0)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Score");
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/PunishSound");
+        }
     }
     private void _onChopsticksNotGetFood(ChopsticksNotGetFood e)
     {

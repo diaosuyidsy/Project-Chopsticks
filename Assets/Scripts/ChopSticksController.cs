@@ -209,6 +209,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.OnEnter();
             m_Timer = 0f;
             Context.Animator.SetBool("Attack", true);
+            EventManager.Instance.TriggerEvent(new ChopsticksStartAttacking(Context.HandTransform));
         }
 
         public override void Update()
@@ -234,7 +235,6 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnEnter()
         {
             base.OnEnter();
-            EventManager.Instance.TriggerEvent(new ChopsticksStartAttacking(Context.HandTransform));
             m_AttackedOnce = false;
             m_Timer = 0f;
         }
@@ -376,7 +376,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void Update()
         {
             base.Update();
-            if (m_Defend)
+            if (m_Defend && Context.ActionBarController.ConsumeActionBarOneTime(Context.ChopstickData.InitialDefendStaminaCost))
             {
                 TransitionTo<DefendState>();
                 return;
