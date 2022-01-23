@@ -365,6 +365,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             base.OnEnter();
             m_Timer = 0f;
+            Context.Animator.SetBool("Pick", true);
         }
 
         public override void Update()
@@ -502,6 +503,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
                     return;
                 }
             }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.Animator.SetBool("Pick", false);
         }
     }
 
