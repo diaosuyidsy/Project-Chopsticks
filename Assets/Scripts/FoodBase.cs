@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class FoodBase : MonoBehaviour
 {
-    public float Score = 2;
+    public int Score = 2;
 }
