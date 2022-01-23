@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7286637470377882141}
   - component: {fileID: 7286637470377882138}
   m_Layer: 6
-  m_Name: foodA (4)
+  m_Name: greenPeper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: b7d1078f90c1f86429eb31c9f24d04a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28647896b29df714298c432e5dd6b527, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 4.7, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba72d1e6b79508e4aa216d08d15b2c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 2
+  isGoodFood: 0
+  score: 2
 --- !u!58 &7286637470377882138
 CircleCollider2D:
   m_ObjectHideFlags: 0

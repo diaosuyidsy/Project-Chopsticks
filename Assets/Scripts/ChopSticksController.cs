@@ -542,7 +542,9 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             if (Context.FoodRecorder.FoodInRange.Count != 0)
             {
-                EventManager.Instance.TriggerEvent(new ChopsticksGetFood(Context.HandTransform, Context.FoodRecorder.FoodInRange[0].gameObject, Context.FoodRecorder.FoodInRange[0].GetComponent<FoodBase>().Score));
+                EventManager.Instance.TriggerEvent(new ChopsticksGetFood(Context.HandTransform,
+                    Context.FoodRecorder.FoodInRange[0].gameObject,
+                    Context.FoodRecorder.FoodInRange[0].GetComponent<FoodBase>().score));
                 Context.FoodRecorder.OnConsumeFood();
             }
             else

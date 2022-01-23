@@ -10,6 +10,9 @@ public class PotController : SingletonMono<PotController>
     
     public List<FoodMovementControl> foods;
 
+    public FoodSpawner goodSpawner;
+    public FoodSpawner badSpawner;
+
     protected override void Awake()
     {
         base.Awake();

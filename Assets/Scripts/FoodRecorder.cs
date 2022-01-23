@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,10 +26,20 @@ public class FoodRecorder : MonoBehaviour
     {
         for (int i = FoodInRange.Count - 1; i >= 0 ; i--)
         {
-            TargetScoreManager.AddScore(FoodInRange[i].Score);
-            Destroy(FoodInRange[i].gameObject);
+            var food = FoodInRange[i];
+            TargetScoreManager.AddScore(food.score);
+
+            var accordingSpawner = food.isGoodFood
+                ? PotController.singleton.goodSpawner
+                : PotController.singleton.badSpawner;
+
+            accordingSpawner.activeFoodCount--;
+            accordingSpawner.spawnPointsState[food.spawnTransform] = false;
+            // 将对应重生点设置为未占用
+
+            food.gameObject.SetActive(false);
         }
-        
-        FoodInRange = new List<FoodBase>();
+
+        FoodInRange.Clear();
     }
 }
