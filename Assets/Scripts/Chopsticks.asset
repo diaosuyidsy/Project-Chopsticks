@@ -59,3 +59,5 @@ MonoBehaviour:
     HiterDirection: {x: 0, y: 0}
   PerfectDefendDuration: 0.2
   RotateStaminaCost: 0.2
+  PerfectBlockRestoreStamina: 16
+  BlockRestoreStamina: 12

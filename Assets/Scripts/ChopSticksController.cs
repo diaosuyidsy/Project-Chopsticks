@@ -348,10 +348,16 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable Enemy, bool isBlock, bool isReflected, bool isPerfectReflected)
         {
             base.OnHit(Enemy);
-            if (m_Timer <= Context.ChopstickData.PerfectDefendDuration) 
+            if (m_Timer <= Context.ChopstickData.PerfectDefendDuration)
+            {
                 Enemy?.OnImpact(Context, true, true, true);
+                Context.ActionBarController.RecoverActionBar(Context.ChopstickData.PerfectBlockRestoreStamina);
+            }
             else
+            {
                 Enemy?.OnImpact(Context, true, true, false);
+                Context.ActionBarController.RecoverActionBar(Context.ChopstickData.BlockRestoreStamina);
+            }
         }
 
         public override void OnExit()
