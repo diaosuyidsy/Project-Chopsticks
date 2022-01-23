@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HotPotBoiling : GameEvent
-{
-    public Transform HotPotTransform;
-}
-
 public class HotPotSpin : GameEvent
 {
     public Transform HotPotTransform;
