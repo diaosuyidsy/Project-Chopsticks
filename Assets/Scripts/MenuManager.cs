@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +22,15 @@ public class MenuManager : MonoBehaviour
         SFXSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSFXChange(); });
         MusicSliderAndSFXSliderInitialize();
     }
-    
+
+    private void Update()
+    {
+        if (ReInput.players.GetPlayer(0).GetButtonDown("StartGame"))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+    }
+
     // when start button is clicked
     void OnStartBtnClicked()
     {
