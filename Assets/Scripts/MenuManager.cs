@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject startBtn, settingBtn, exitBtn, sliders;
+    public GameObject startBtn, settingBtn, exitBtn, sliders, musicSlider, SFXSlider;
     public string sceneName;
 
     void Start()
@@ -14,20 +14,38 @@ public class MenuManager : MonoBehaviour
         startBtn.GetComponent<Button>().onClick.AddListener(OnStartBtnClicked);
         settingBtn.GetComponent<Button>().onClick.AddListener(OnSettingBtnClicked);
         exitBtn.GetComponent<Button>().onClick.AddListener(OnExitBtnClicked);
+
+        musicSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMusicChange(); });
+        SFXSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSFXChange(); });
     }
     
-    public void OnStartBtnClicked()
+    // when start button is clicked
+    void OnStartBtnClicked()
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void OnSettingBtnClicked()
+    // when setting button is clicked
+    void OnSettingBtnClicked()
     {
         sliders.SetActive(!sliders.activeSelf);
     }
 
-    public void OnExitBtnClicked()
+    // when exit button is clicked
+    void OnExitBtnClicked()
     {
         Application.Quit();
+    }
+
+    // when music volumn is changed
+    void OnMusicChange()
+    {
+
+    }
+
+    // when sound effect volumn is changed
+    void OnSFXChange()
+    {
+
     }
 }
