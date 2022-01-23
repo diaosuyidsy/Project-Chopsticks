@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7286637470377882143}
   - component: {fileID: 7286637470377882140}
   - component: {fileID: 7286637470377882141}
-  - component: {fileID: 7286637470377882138}
+  - component: {fileID: 5573780978245287310}
   m_Layer: 6
   m_Name: greenPeper
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28647896b29df714298c432e5dd6b527, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGoodFood: 0
   score: 2
---- !u!58 &7286637470377882138
-CircleCollider2D:
+--- !u!70 &5573780978245287310
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -154,6 +154,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.035597548}
-  serializedVersion: 2
-  m_Radius: 1.1024536
+  m_Offset: {x: 0.16794005, y: -0.12740082}
+  m_Size: {x: 1.9086828, y: 5.3575892}
+  m_Direction: 0

@@ -4635,6 +4635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: foodA (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7286637470377882136, guid: 942431b368d229648a1b8d74404115e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7286637470377882139, guid: 942431b368d229648a1b8d74404115e0, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4689,9 +4693,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7286637470377882142, guid: 942431b368d229648a1b8d74404115e0, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7286637470377882138, guid: 942431b368d229648a1b8d74404115e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 942431b368d229648a1b8d74404115e0, type: 3}
 --- !u!1001 &8242024107429100711
 PrefabInstance:
