@@ -392,6 +392,9 @@ MonoBehaviour:
   startBtn: {fileID: 1586621394}
   settingBtn: {fileID: 1006505819}
   exitBtn: {fileID: 1016743765}
+  sliders: {fileID: 617060273}
+  musicSlider: {fileID: 616454328}
+  SFXSlider: {fileID: 1923417317}
   sceneName: Ruofu's Scene
 --- !u!4 &374644853
 Transform:
