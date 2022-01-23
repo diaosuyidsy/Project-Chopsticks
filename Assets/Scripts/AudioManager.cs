@@ -25,7 +25,6 @@ public class AudioManager : MonoBehaviour
         EventManager.Instance.AddHandler<ChopsticksDefence>(_onChopsticksDefence);
         EventManager.Instance.AddHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.AddHandler<ChopsticksBounceBack>(_onChopsticksBounceBack);
         EventManager.Instance.AddHandler<Win>(_onWin);
         EventManager.Instance.AddHandler<Lose>(_onLose);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
@@ -38,7 +37,6 @@ public class AudioManager : MonoBehaviour
         EventManager.Instance.RemoveHandler<ChopsticksDefence>(_onChopsticksDefence);
         EventManager.Instance.RemoveHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.RemoveHandler<ChopsticksBounceBack>(_onChopsticksBounceBack);
         EventManager.Instance.RemoveHandler<Win>(_onWin);
         EventManager.Instance.RemoveHandler<Lose>(_onLose);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
@@ -51,11 +49,27 @@ public class AudioManager : MonoBehaviour
     
     private void _onChopsticksAttack(ChopsticksClash e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/CHOPSTICKBLADE");
+        if (e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/ChopstickBladeRanA");
+        }
+        else if(e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/ChopstickBladeRanB");
+        }
+        else if(e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/CHOPSTICKBLADE");
+        }
+        else
+        {
+            
+        }
+        
     }
     private void _onChopsticksDefence(ChopsticksDefence e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/ChopstickBladeRanA");
+        
     }
     
     private void _onChopsticksGetFood(ChopsticksGetFood e)
@@ -65,10 +79,6 @@ public class AudioManager : MonoBehaviour
     private void _onChopsticksNotGetFood(ChopsticksNotGetFood e)
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/ChopStciksNull");
-    }
-    private void _onChopsticksBounceBack(ChopsticksBounceBack e)
-    {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/ChopstickBladeRanB");
     }
     private void _onWin(Win e)
     {
