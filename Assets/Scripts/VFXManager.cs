@@ -30,6 +30,21 @@ public class VFXManager : MonoBehaviour
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
     
+    private void OnDestroy()
+    {
+        EventManager.Instance.RemoveHandler<HotPotSpin>(_onHotPotSpin);
+        EventManager.Instance.RemoveHandler<HotPotHotAir>(_onHotPotHotAir);
+        EventManager.Instance.RemoveHandler<ChopsticksAttack>(_onChopsticksAttack);
+        EventManager.Instance.RemoveHandler<ChopsticksDefence>(_onChopsticksDefence);
+        EventManager.Instance.RemoveHandler<ChopsticksGetFood>(_onChopsticksGetFood);
+        EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
+        EventManager.Instance.RemoveHandler<ChopsticksBounceBack>(_onChopsticksBounceBack);
+        EventManager.Instance.RemoveHandler<Win>(_onWin);
+        EventManager.Instance.RemoveHandler<Lose>(_onLose);
+        EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
+    }
+
+    
     private void _onHotPotSpin(HotPotSpin e)
     {
         

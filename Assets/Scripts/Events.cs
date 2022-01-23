@@ -27,6 +27,13 @@ public class ChopsticksGetFood : GameEvent
     public Transform HandTransform;
     public GameObject Food;
     public int Score;
+
+    public ChopsticksGetFood(Transform handTransform, GameObject food, int score)
+    {
+        HandTransform = handTransform;
+        Food = food;
+        Score = score;
+    }
 }
 
 public class ChopsticksNotGetFood : GameEvent

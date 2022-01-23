@@ -8,7 +8,7 @@ public static class Utility
 
 public interface IHittable
 {
-    void OnImpact(IHittable Enemy, bool isBlock = false);
+    void OnImpact(IHittable Enemy, bool isBlock = false, bool isReflected = false, bool isPerfectReflected = false);
     Vector2 GetHiterDirection();
 }
 
