@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
     {
         EventManager.Instance.AddHandler<HotPotSpin>(_onHotPotSpin);
         EventManager.Instance.AddHandler<ChopsticksClash>(_onChopsticksAttack);
-        EventManager.Instance.AddHandler<ChopsticksDefence>(_onChopsticksDefence);
         EventManager.Instance.AddHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
         EventManager.Instance.AddHandler<Win>(_onWin);
@@ -34,7 +33,6 @@ public class AudioManager : MonoBehaviour
     {
         EventManager.Instance.RemoveHandler<HotPotSpin>(_onHotPotSpin);
         EventManager.Instance.RemoveHandler<ChopsticksClash>(_onChopsticksAttack);
-        EventManager.Instance.RemoveHandler<ChopsticksDefence>(_onChopsticksDefence);
         EventManager.Instance.RemoveHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
         EventManager.Instance.RemoveHandler<Win>(_onWin);
@@ -44,48 +42,44 @@ public class AudioManager : MonoBehaviour
 
     private void _onHotPotSpin(HotPotSpin e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/HotPotSPIN1");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/HotPotSPIN1");
     }
     
     private void _onChopsticksAttack(ChopsticksClash e)
     {
         if (e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/ChopstickBladeRanA");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/ChopstickBladeRanA");
         }
         else if(e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/ChopstickBladeRanB");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/ChopstickBladeRanB");
         }
         else if(e.AttType == ChopsticksClash.AttackType.AttackOnAttack)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/CHOPSTICKBLADE");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/CHOPSTICKBLADE");
         }
         else
         {
-            
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/PerfectShiled");
         }
         
     }
-    private void _onChopsticksDefence(ChopsticksDefence e)
-    {
-        
-    }
-    
+   
     private void _onChopsticksGetFood(ChopsticksGetFood e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Score");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Score");
     }
     private void _onChopsticksNotGetFood(ChopsticksNotGetFood e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/ChopStciksNull");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/ChopStciksNull");
     }
     private void _onWin(Win e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Win");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Win");
     }
     private void _onLose(Lose e)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Lose");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Lose");
     }
 }
