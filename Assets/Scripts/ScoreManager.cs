@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
     {
         scoreValue += score;
     }
-
+    
 
 
 }

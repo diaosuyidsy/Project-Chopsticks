@@ -14,8 +14,6 @@ public class TimerManager : MonoBehaviour
     public Text player2Text;
     public GameObject blur;
     
-    
-
     private Text time;
     
     // Start is called before the first frame update
@@ -40,29 +38,31 @@ public class TimerManager : MonoBehaviour
         }
         blur.SetActive(true);
 
-        
+        EventManager.Instance.TriggerEvent(new End());
         //here add finish game logic
         if (player1Score.scoreValue > player2Score.scoreValue)
         {
 
             player1Text.text = "Win";
             player2Text.text = "Lose";
+            player1Text.color = Color.green;
+            player2Text.color = Color.red;
             
         }else if (player1Score.scoreValue < player2Score.scoreValue)
         {
             player2Text.text = "Win";
             player1Text.text = "Lose";
+            player2Text.color = Color.green;
+            player1Text.color = Color.red;
         }
         else
         {
-            player2Text.text = "Win";
-            player1Text.text = "Win";
+            player2Text.text = "Draw";
+            player1Text.text = "Draw";
+            player1Text.color = Color.yellow;
+            player2Text.color = Color.yellow;
         }
         player1Score.enabled = false;
         player2Score.enabled = false;
-        
-        
-        
-
     }
 }
