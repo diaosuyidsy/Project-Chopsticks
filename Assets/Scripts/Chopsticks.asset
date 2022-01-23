@@ -22,17 +22,17 @@ MonoBehaviour:
   DefendStaminaCostPersec: 0.1
   PostDefendDuration: 0.4
   IdleHitInformation:
-    HitForce: 25
-    HitDuration: 0.3
+    HitForce: 30
+    HitDuration: 0.4
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   AttackBaseHitInformation:
-    HitForce: 20
-    HitDuration: 0.3
+    HitForce: 30
+    HitDuration: 0.6
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
   PostDefendHitInformation:
-    HitForce: 10
+    HitForce: 30
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}

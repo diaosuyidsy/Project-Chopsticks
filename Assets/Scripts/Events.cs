@@ -14,12 +14,48 @@ public class HotPotHotAir : GameEvent
 
 public class ChopsticksAttack : GameEvent
 {
+    public enum AttackType
+    {
+        AttackOnIdle,
+        AttackOnAttack,
+        AttackOnDefend,
+        AttackOnPerfectDefend
+    }
+
+    public AttackType AttType;
     public Transform HandTransform;
+
+    public ChopsticksAttack(AttackType attackType, Transform handTransform)
+    {
+        AttType = attackType;
+        HandTransform = handTransform;
+    }
 }
 
+/// <summary>
+/// 防御开始
+/// </summary>
 public class ChopsticksDefence : GameEvent
 {
     public Transform HandTransform;
+
+    public ChopsticksDefence(Transform handTransform)
+    {
+        HandTransform = handTransform;
+    }
+}
+
+/// <summary>
+/// 防御结束
+/// </summary>
+public class ChopsticksDefenceCancel : GameEvent
+{
+    public Transform HandTransform;
+
+    public ChopsticksDefenceCancel(Transform handTransform)
+    {
+        HandTransform = handTransform;
+    }
 }
 
 public class ChopsticksGetFood : GameEvent
