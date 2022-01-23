@@ -16,15 +16,8 @@ public class StartButtonManager : MonoBehaviour
         startBtn.GetComponent<Button>().onClick.AddListener(OnStartBtnClicked);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-     
-        
-        
-    }
     void OnStartBtnClicked()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
