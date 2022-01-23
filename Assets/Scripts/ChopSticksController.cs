@@ -517,6 +517,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 Context.FoodRecorder.OnConsumeFood();
             }
         }
+        
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.Animator.SetBool("Pick", false);
+        }
     }
 
     private class PickRecoveryState : ChopstickStates
