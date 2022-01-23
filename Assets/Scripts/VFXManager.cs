@@ -20,11 +20,10 @@ public class VFXManager : MonoBehaviour
     {
         EventManager.Instance.AddHandler<HotPotSpin>(_onHotPotSpin);
         EventManager.Instance.AddHandler<HotPotHotAir>(_onHotPotHotAir);
-        EventManager.Instance.AddHandler<ChopsticksAttack>(_onChopsticksAttack);
+        EventManager.Instance.AddHandler<ChopsticksClash>(_onChopsticksAttack);
         EventManager.Instance.AddHandler<ChopsticksDefence>(_onChopsticksDefence);
         EventManager.Instance.AddHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.AddHandler<ChopsticksBounceBack>(_onChopsticksBounceBack);
         EventManager.Instance.AddHandler<Win>(_onWin);
         EventManager.Instance.AddHandler<Lose>(_onLose);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
@@ -34,14 +33,13 @@ public class VFXManager : MonoBehaviour
     {
         EventManager.Instance.RemoveHandler<HotPotSpin>(_onHotPotSpin);
         EventManager.Instance.RemoveHandler<HotPotHotAir>(_onHotPotHotAir);
-        EventManager.Instance.RemoveHandler<ChopsticksAttack>(_onChopsticksAttack);
+        EventManager.Instance.RemoveHandler<ChopsticksClash>(_onChopsticksAttack);
         EventManager.Instance.RemoveHandler<ChopsticksDefence>(_onChopsticksDefence);
         EventManager.Instance.RemoveHandler<ChopsticksGetFood>(_onChopsticksGetFood);
         EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
-        EventManager.Instance.RemoveHandler<ChopsticksBounceBack>(_onChopsticksBounceBack);
         EventManager.Instance.RemoveHandler<Win>(_onWin);
         EventManager.Instance.RemoveHandler<Lose>(_onLose);
-        EventManager.Instance.RemoveHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
+        EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
     }
 
     
@@ -53,7 +51,7 @@ public class VFXManager : MonoBehaviour
     {
         
     }
-    private void _onChopsticksAttack(ChopsticksAttack e)
+    private void _onChopsticksAttack(ChopsticksClash e)
     {
         
     }
@@ -67,10 +65,6 @@ public class VFXManager : MonoBehaviour
         
     }
     private void _onChopsticksNotGetFood(ChopsticksNotGetFood e)
-    {
-        
-    }
-    private void _onChopsticksBounceBack(ChopsticksBounceBack e)
     {
         
     }

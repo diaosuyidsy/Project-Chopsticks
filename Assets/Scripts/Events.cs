@@ -12,7 +12,7 @@ public class HotPotHotAir : GameEvent
     public Transform HotPotTransform;
 }
 
-public class ChopsticksAttack : GameEvent
+public class ChopsticksClash : GameEvent
 {
     public enum AttackType
     {
@@ -25,9 +25,19 @@ public class ChopsticksAttack : GameEvent
     public AttackType AttType;
     public Transform HandTransform;
 
-    public ChopsticksAttack(AttackType attackType, Transform handTransform)
+    public ChopsticksClash(AttackType attackType, Transform handTransform)
     {
         AttType = attackType;
+        HandTransform = handTransform;
+    }
+}
+
+public class ChopsticksStartAttacking : GameEvent
+{
+    public Transform HandTransform;
+    
+    public ChopsticksStartAttacking(Transform handTransform)
+    {
         HandTransform = handTransform;
     }
 }
@@ -77,10 +87,6 @@ public class ChopsticksNotGetFood : GameEvent
     public Transform HandTransform;
 }
 
-public class ChopsticksBounceBack : GameEvent
-{
-    public Transform HandTransform;
-}
 
 public class Win : GameEvent
 {

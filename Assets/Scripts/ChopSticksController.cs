@@ -94,6 +94,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnEnter()
         {
             base.OnEnter();
+            Context.Animator.SetBool("Attack", false);
+            Context.Animator.SetBool("Idle", false);
+            Context.Animator.SetBool("Pick", false);
+            Context.Animator.SetBool("Defend", false);
+            Context.Animator.SetBool("PostDefend", false);
+
             Context.m_Rigidbody.AddForce(Context.m_HitInfo.HitForce * Context.m_HitInfo.HiterDirection, ForceMode2D.Impulse);
             Context.ActionBarController.ConsumeActionBarOneTime(Context.m_HitInfo.StaminaCost);
             m_Timer = 0f;
@@ -227,6 +233,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnEnter()
         {
             base.OnEnter();
+            EventManager.Instance.TriggerEvent(new ChopsticksStartAttacking(Context.HandTransform));
             m_AttackedOnce = false;
             m_Timer = 0f;
         }
@@ -314,6 +321,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             base.OnEnter();
             EventManager.Instance.TriggerEvent(new ChopsticksDefence(Context.HandTransform));
+            Context.Animator.SetBool("Defend", true);
             m_Timer = 0f;
         }
 
@@ -344,6 +352,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
             else
                 Enemy?.OnImpact(Context, true, true, false);
         }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.Animator.SetBool("Defend", false);
+        }
     }
 
     private class PostDefendState : ChopstickStates
@@ -354,6 +368,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             base.OnEnter();
             EventManager.Instance.TriggerEvent(new ChopsticksDefenceCancel(Context.HandTransform));
+            Context.Animator.SetBool("PostDefend", true);
             m_Timer = 0f;
         }
 
@@ -384,6 +399,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
             Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
             TransitionTo<ReflectedState>();
             return;
+        }
+        
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.Animator.SetBool("PostDefend", false);
         }
     }
 
@@ -432,6 +453,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.OnHit(Enemy, isBlock);
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.PickAnticipationHitInformation);
             Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
+            Context.Animator.SetBool("Pick", false);
             TransitionTo<ReflectedState>();
         }
     }
@@ -458,9 +480,14 @@ public class ChopSticksController : MonoBehaviour, IHittable
             var nextpos = Vector3.Lerp(m_InitialPosition, m_TargetPosition,
                 m_Timer / Context.ChopstickData.PickCancelDuration);
             Context.m_Rigidbody.MovePosition(nextpos);
+        }
+
+        public override void Update()
+        {
+            base.Update();
             if (m_Timer < Context.ChopstickData.PickCancelDuration)
             {
-                m_Timer += Time.fixedDeltaTime;
+                m_Timer += Time.deltaTime;
                 if (m_Timer >= Context.ChopstickData.PickCancelDuration)
                 {
                     TransitionTo<IdleState>();
@@ -506,6 +533,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.OnHit(Enemy, isBlock);
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.PickAnticipationHitInformation);
             Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
+            Context.Animator.SetBool("Pick", false);
             TransitionTo<ReflectedState>();
         }
 
@@ -516,12 +544,10 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 EventManager.Instance.TriggerEvent(new ChopsticksGetFood(Context.HandTransform, Context.FoodRecorder.FoodInRange[0].gameObject, Context.FoodRecorder.FoodInRange[0].GetComponent<FoodBase>().Score));
                 Context.FoodRecorder.OnConsumeFood();
             }
-        }
-        
-        public override void OnExit()
-        {
-            base.OnExit();
-            Context.Animator.SetBool("Pick", false);
+            else
+            {
+                EventManager.Instance.TriggerEvent(new ChopsticksNotGetFood());
+            }
         }
     }
 
@@ -560,13 +586,13 @@ public class ChopSticksController : MonoBehaviour, IHittable
     {
         (m_ChopstickFSM.CurrentState as ChopstickStates).OnHit(Enemy, isBlock, isReflected, isPerfectReflected);
         if(!isBlock)
-            EventManager.Instance.TriggerEvent(new ChopsticksAttack(ChopsticksAttack.AttackType.AttackOnIdle, HandTransform));
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnIdle, HandTransform));
         else if(isBlock && !isReflected && !isPerfectReflected)
-            EventManager.Instance.TriggerEvent(new ChopsticksAttack(ChopsticksAttack.AttackType.AttackOnAttack, HandTransform));
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnAttack, HandTransform));
         else if(isReflected && !isPerfectReflected)
-            EventManager.Instance.TriggerEvent(new ChopsticksAttack(ChopsticksAttack.AttackType.AttackOnDefend, HandTransform));
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnDefend, HandTransform));
         else if(isPerfectReflected)
-            EventManager.Instance.TriggerEvent(new ChopsticksAttack(ChopsticksAttack.AttackType.AttackOnPerfectDefend, HandTransform));
+            EventManager.Instance.TriggerEvent(new ChopsticksClash(ChopsticksClash.AttackType.AttackOnPerfectDefend, HandTransform));
     }
 
     public Vector2 GetHiterDirection()
