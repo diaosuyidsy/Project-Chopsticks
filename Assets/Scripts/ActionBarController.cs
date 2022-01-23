@@ -5,6 +5,14 @@ using UnityEngine;
 public class ActionBarController : MonoBehaviour
 {
     private RectTransform _rectTransform;
+    //public float continuouslyDropValue = 0.01f;
+    //public float dropOnceValue = 0.1f;
+    //public float recoverSpeed= 0.1f;
+    public float recoverPulse = 1f;
+    
+
+    private float consumeStaminaBarTime;
+  
 
   //  private bool canConsume;
 
@@ -36,49 +44,72 @@ public class ActionBarController : MonoBehaviour
     {
         while (_rectTransform.localScale.x >0 && value>=0)
         {
+          //  canRecoverStamina = false;
+            consumeStaminaBarTime = Time.realtimeSinceStartup;
             localScale = _rectTransform.localScale;
             localScale.x -= Time.fixedDeltaTime*0.1f;
             value -= Time.fixedDeltaTime*0.1f;
             _rectTransform.localScale = localScale;
             yield return null;
         }
+
+      //  canRecoverStamina = true;
     }
 
-    public bool ConsumeActionBarContinuously()
+    public bool ConsumeActionBarContinuously(float value)
     {
        if (_rectTransform.localScale.x >0)
-        {
+       {
+          // canRecoverStamina = false;
+            consumeStaminaBarTime = Time.realtimeSinceStartup;
             localScale = _rectTransform.localScale;
-            localScale.x -= Time.fixedDeltaTime*0.1f;
+            localScale.x -= Time.fixedDeltaTime*value;
             localScale.x = Mathf.Max(0, localScale.x);
             _rectTransform.localScale = localScale;
             return true;
         }
        else
        {
+          // canRecoverStamina = true;
            return false;
        }
     }
 
+    private bool recoverActionBarRoutineStarted = false;
     public IEnumerator RecoverActionBarRoutine()
     {
         while (_rectTransform.localScale.x <1)
         {
+            recoverActionBarRoutineStarted = true;
             localScale = _rectTransform.localScale;
             localScale = _rectTransform.localScale;
-            localScale.x += Time.fixedDeltaTime*0.1f;
+            localScale.x += Time.fixedDeltaTime*0.01f;
             localScale.x = Mathf.Min(1, localScale.x);
             _rectTransform.localScale = localScale;
             yield return null;
         }
+
+        recoverActionBarRoutineStarted = false;
     }
 
-    public bool RecoverActionBar()
+    public bool RecoverActionBar(float value)
     {
-        StartCoroutine(RecoverActionBarRoutine());
+        if(_rectTransform.localScale.x <1)
+        {
+            recoverActionBarRoutineStarted = true;
+            localScale = _rectTransform.localScale;
+            localScale = _rectTransform.localScale;
+            localScale.x += Time.fixedDeltaTime*value;
+            localScale.x = Mathf.Min(1, localScale.x);
+            _rectTransform.localScale = localScale;
+        }
+        
+      //  if(!recoverActionBarRoutineStarted)
+       // StartCoroutine(RecoverActionBarRoutine());
         return false;
     }
 
+    private float recoverTimer = 0f;
     // Update is called once per frame
     void Update()
     {
@@ -89,13 +120,15 @@ public class ActionBarController : MonoBehaviour
         if (Input.GetKey(KeyCode.V))
         {
            // StartCoroutine(ConsumeActionBarContinuously());
-           ConsumeActionBarContinuously();
+           ConsumeActionBarContinuously(0.01f);
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+
+        if ((Time.realtimeSinceStartup - consumeStaminaBarTime) > recoverPulse)
         {
-            RecoverActionBar();
+            RecoverActionBar(0.01f);
         }
+        
     }
 
 

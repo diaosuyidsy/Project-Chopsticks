@@ -1049,6 +1049,7 @@ GameObject:
   - component: {fileID: 1455818048}
   - component: {fileID: 1455818047}
   - component: {fileID: 1455818046}
+  - component: {fileID: 1455818045}
   m_Layer: 0
   m_Name: foodA (3)
   m_TagString: Untagged
@@ -1056,6 +1057,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1455818045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455818044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba72d1e6b79508e4aa216d08d15b2c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 2
 --- !u!231 &1455818046
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -1240,6 +1254,7 @@ GameObject:
   - component: {fileID: 1515467644}
   - component: {fileID: 1515467643}
   - component: {fileID: 1515467642}
+  - component: {fileID: 1515467645}
   m_Layer: 0
   m_Name: foodA (2)
   m_TagString: Untagged
@@ -1304,6 +1319,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1515467645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515467641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba72d1e6b79508e4aa216d08d15b2c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 2
 --- !u!212 &1515467646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1806,3 +1834,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a2fa456cfbd8684185c7c76a8b458d1, type: 3}
+--- !u!1 &2137493295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2137493296}
+  - component: {fileID: 2137493297}
+  m_Layer: 0
+  m_Name: FoodSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2137493296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137493295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5293987, y: -0.12375068, z: -0.6968999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2137493297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137493295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7112a8700770c4fb1e91a961ded809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
