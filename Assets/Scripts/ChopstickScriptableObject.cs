@@ -16,4 +16,10 @@ public class ChopstickScriptableObject : ScriptableObject
     public HitInformation IdleHitInformation;
     public HitInformation AttackBaseHitInformation;
     public HitInformation PostDefendHitInformation;
+    public float PickAnticipationMoveSpeed = 3f;
+    public float PickAnticipationDuration = 2f;
+    public float PickCancelDuration = 0.5f;
+    public HitInformation PickAnticipationHitInformation;
+    public float PickingDuration = 0.1f;
+    public float PickRecoveryDuration = 0.5f;
 }

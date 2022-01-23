@@ -9,12 +9,16 @@ public class ChopSticksController : MonoBehaviour, IHittable
 {
     public int PlayerNumber;
     public ChopstickScriptableObject ChopstickData;
-    public HashSet<IHittable> InRangeHittables = new HashSet<IHittable>();
+    public List<IHittable> InRangeHittables = new List<IHittable>();
+    public FoodRecorder FoodRecorder;
+    public Animator Animator;
+    public Transform HitBox;
     
     private FSM<ChopSticksController> m_ChopstickFSM;
     private Rigidbody2D m_Rigidbody;
     private Player m_Player;
     private HitInformation m_HitInfo = new HitInformation();
+    private float m_PickMovedDuration;
 
     private void Awake()
     {
@@ -114,6 +118,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
 
     private class IdleState : ChopstickStates
     {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            Context.Animator.SetBool("Idle", true);
+        }
+
         public override void Update()
         {
             base.Update();
@@ -126,6 +136,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
             if (m_Defend)
             {
                 TransitionTo<DefendState>();
+                return;
+            }
+
+            if (m_Pick)
+            {
+                TransitionTo<PickAnticipationState>();
                 return;
             }
         }
@@ -145,6 +161,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
             var newPosition = Context.m_Rigidbody.position + new Vector2(m_HAxis * Context.ChopstickData.ChopsticksNormalHorizontalSpeed, m_VAxis * Context.ChopstickData.ChopsticksNormalVerticalSpeed) * Time.fixedDeltaTime;
             Context.m_Rigidbody.MovePosition(newPosition);
         }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.Animator.SetBool("Idle", false);
+        }
     }
 
     private class AttackBaseState : ChopstickStates
@@ -161,6 +183,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
             base.OnHit(Enemy);
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.AttackBaseHitInformation);
             Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
+            Context.Animator.SetBool("Attack", false);
             TransitionTo<ReflectedState>();
             return;
         }
@@ -174,6 +197,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         {
             base.OnEnter();
             m_Timer = 0f;
+            Context.Animator.SetBool("Attack", true);
         }
 
         public override void Update()
@@ -232,7 +256,11 @@ public class ChopSticksController : MonoBehaviour, IHittable
             if(!isBlock)
                 enemy.OnImpact(Context, true);
             Context.m_HitInfo = new HitInformation(Context.ChopstickData.AttackBaseHitInformation);
-            Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
+            if(!isBlock)
+                Context.m_HitInfo.HiterDirection = enemy.GetHiterDirection();
+            else
+                Context.m_HitInfo.HiterDirection = -Context.GetHiterDirection();
+            Context.Animator.SetBool("Attack", false);
             TransitionTo<ReflectedState>();
             return;
         }
@@ -261,6 +289,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 }
             }
         }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            Context.Animator.SetBool("Attack", false);
+        }
     }
 
     private class DefendState : ChopstickStates
@@ -279,10 +313,7 @@ public class ChopSticksController : MonoBehaviour, IHittable
         public override void OnHit(IHittable Enemy, bool isBlock = false)
         {
             base.OnHit(Enemy);
-            if (Enemy != null)
-            {
-                Enemy.OnImpact(Context, true);
-            }
+            Enemy?.OnImpact(Context, true);
         }
     }
 
@@ -326,6 +357,154 @@ public class ChopSticksController : MonoBehaviour, IHittable
         }
     }
 
+    private class PickAnticipationState : ChopstickStates
+    {
+        private float m_Timer;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (!m_Pick)
+            {
+                Context.m_PickMovedDuration = m_Timer;
+                TransitionTo<PickCancelState>();
+                return;
+            }
+
+            if (m_Timer < Context.ChopstickData.PickAnticipationDuration)
+            {
+                m_Timer += Time.deltaTime;
+                if (m_Timer >= Context.ChopstickData.PickAnticipationDuration)
+                {
+                    TransitionTo<PickingState>();
+                    return;
+                }
+            }
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            var nextPos = Context.transform.up * (Context.ChopstickData.PickAnticipationMoveSpeed * Time.fixedDeltaTime) + Context.transform.position;
+            Context.m_Rigidbody.MovePosition(nextPos);
+        }
+
+        public override void OnHit(IHittable Enemy = null, bool isBlock = false)
+        {
+            base.OnHit(Enemy, isBlock);
+            Context.m_HitInfo = new HitInformation(Context.ChopstickData.PickAnticipationHitInformation);
+            Context.m_HitInfo.HiterDirection = Enemy.GetHiterDirection();
+            TransitionTo<ReflectedState>();
+        }
+    }
+
+    private class PickCancelState : ChopstickStates
+    {
+        private float m_Timer;
+        private Vector3 m_TargetPosition;
+        private Vector3 m_InitialPosition;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+            m_InitialPosition = new Vector3(Context.transform.position.x, Context.transform.position.y,
+                Context.transform.position.z);
+            m_TargetPosition = Context.transform.position - Context.transform.up * Context.m_PickMovedDuration;
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            var nextpos = Vector3.Lerp(m_InitialPosition, m_TargetPosition,
+                m_Timer / Context.ChopstickData.PickCancelDuration);
+            Context.m_Rigidbody.MovePosition(nextpos);
+            if (m_Timer < Context.ChopstickData.PickCancelDuration)
+            {
+                m_Timer += Time.fixedDeltaTime;
+                if (m_Timer >= Context.ChopstickData.PickCancelDuration)
+                {
+                    TransitionTo<IdleState>();
+                    return;
+                }
+            }
+        }
+    }
+
+    private class PickingState : ChopstickStates
+    {
+        private float m_Timer;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (m_Timer < Context.ChopstickData.PickingDuration)
+            {
+                m_Timer += Time.deltaTime;
+                if (m_Timer >= Context.ChopstickData.PickingDuration)
+                {
+                    TransitionTo<PickRecoveryState>();
+                    return;
+                }
+            }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            PickupSuccess();
+        }
+
+        private void PickupSuccess()
+        {
+            if (Context.FoodRecorder.FoodInRange.Count != 0)
+            {
+                print("Pickedupfood!");
+            }
+            else
+            {
+                print("Failed");
+            }
+        }
+    }
+
+    private class PickRecoveryState : ChopstickStates
+    {
+        private float m_Timer;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            m_Timer = 0f;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (m_Timer < Context.ChopstickData.PickRecoveryDuration)
+            {
+                m_Timer += Time.deltaTime;
+                if (m_Timer >= Context.ChopstickData.PickRecoveryDuration)
+                {
+                    TransitionTo<IdleState>();
+                    return;
+                }
+            }
+        }
+    }
+
     public void OnImpact(IHittable Enemy, bool isBlock = false)
     {
         (m_ChopstickFSM.CurrentState as ChopstickStates).OnHit(Enemy, isBlock);
@@ -333,6 +512,6 @@ public class ChopSticksController : MonoBehaviour, IHittable
 
     public Vector2 GetHiterDirection()
     {
-        return transform.up;
+        return -HitBox.right;
     }
 }
