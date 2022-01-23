@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerManager : MonoBehaviour
 {
 
-    public static int timerValue = 10;
+    public static int timerValue = 100;
     public ScoreManager player1Score;
     public ScoreManager player2Score;
 
