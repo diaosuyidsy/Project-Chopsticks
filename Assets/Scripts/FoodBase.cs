@@ -27,14 +27,14 @@ public class FoodBase : MonoBehaviour
 
     public IEnumerator SetFoodActive()
     {
+        m_SpringJoint.connectedAnchor = transform.position;
+        m_SpringJoint.enabled = true;
+
+        m_Collider.enabled = true;
+        
         yield return new WaitForSeconds(1f);
         
         m_Renderer.sortingOrder = 2;
-        
-        // m_SpringJoint.connectedAnchor = transform.position;
-        // m_SpringJoint.enabled = true;
-        
-        m_Collider.enabled = true;
     }
 
 /*public IEnumerator SpawnRoutine()
