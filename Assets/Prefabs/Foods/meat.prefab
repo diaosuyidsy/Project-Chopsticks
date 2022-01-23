@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGoodFood: 0
-  score: 2
+  score: 4
 --- !u!70 &1902342275856138053
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
