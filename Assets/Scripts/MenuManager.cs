@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
 
         musicSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMusicChange(); });
         SFXSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSFXChange(); });
+        MusicSliderAndSFXSliderInitialize();
     }
     
     // when start button is clicked
@@ -41,11 +42,21 @@ public class MenuManager : MonoBehaviour
     void OnMusicChange()
     {
         float value = musicSlider.GetComponent<Slider>().value;
+        var Music = FMODUnity.RuntimeManager.GetBus("bus:/Music");
+        Music.setVolume(value);
     }
 
     // when sound effect volumn is changed
     void OnSFXChange()
     {
         float value = SFXSlider.GetComponent<Slider>().value;
+        var SFX = FMODUnity.RuntimeManager.GetBus("bus:/Sounds");
+        SFX.setVolume(value);
+    }
+    
+    void MusicSliderAndSFXSliderInitialize()
+    {
+        FMODUnity.RuntimeManager.GetBus("bus:/Music").setVolume(musicSlider.GetComponent<Slider>().value = 0.5f);
+        FMODUnity.RuntimeManager.GetBus("bus:/Sounds").setVolume(SFXSlider.GetComponent<Slider>().value = 0.5f);
     }
 }
