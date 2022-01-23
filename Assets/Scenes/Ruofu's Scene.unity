@@ -1828,7 +1828,7 @@ PrefabInstance:
     - target: {fileID: 8348243486688767661, guid: 3987e184cfa8304428b67ee6902d8fd4, type: 3}
       propertyPath: ActionBarController
       value: 
-      objectReference: {fileID: 1512480933}
+      objectReference: {fileID: 684403829}
     - target: {fileID: 8348243486688767663, guid: 3987e184cfa8304428b67ee6902d8fd4, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2135,7 +2135,7 @@ PrefabInstance:
     - target: {fileID: 8348243486688767661, guid: 3987e184cfa8304428b67ee6902d8fd4, type: 3}
       propertyPath: ActionBarController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1512480933}
     - target: {fileID: 8348243486688767663, guid: 3987e184cfa8304428b67ee6902d8fd4, type: 3}
       propertyPath: m_RootOrder
       value: 8
