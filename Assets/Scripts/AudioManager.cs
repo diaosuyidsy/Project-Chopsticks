@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
         EventManager.Instance.AddHandler<HotPotSpin>(_onHotPotSpin);
         EventManager.Instance.AddHandler<ChopsticksClash>(_onChopsticksAttack);
         EventManager.Instance.AddHandler<ChopsticksGetFood>(_onChopsticksGetFood);
+        EventManager.Instance.AddHandler<ChopsticksGetBadFood>(_onChopsticksGetBadFood);
         EventManager.Instance.AddHandler<ChopsticksNotGetFood>(_onChopsticksNotGetFood);
         EventManager.Instance.AddHandler<Win>(_onWin);
         EventManager.Instance.AddHandler<Lose>(_onLose);
@@ -69,6 +70,10 @@ public class AudioManager : MonoBehaviour
     private void _onChopsticksGetFood(ChopsticksGetFood e)
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/Score");
+    }
+    private void _onChopsticksGetBadFood(ChopsticksGetBadFood e)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sounds/PunishSound");
     }
     private void _onChopsticksNotGetFood(ChopsticksNotGetFood e)
     {
