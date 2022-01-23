@@ -36,7 +36,7 @@ MonoBehaviour:
     HitDuration: 0.5
     StaminaCost: 0
     HiterDirection: {x: 0, y: 0}
-  PickAnticipationMoveSpeed: 6
+  PickAnticipationMoveSpeed: 0
   PickAnticipationDuration: 0.3
   PickCancelDuration: 0.1
   PickStaminaCost: 0.1

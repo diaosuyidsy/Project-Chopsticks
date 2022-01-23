@@ -9,6 +9,7 @@ public class ActionBarController : MonoBehaviour
     //public float dropOnceValue = 0.1f;
     //public float recoverSpeed= 0.1f;
     public float recoverPulse = 1f;
+    public float RecoverSpeed = 1f;
     
 
     private float consumeStaminaBarTime;
@@ -99,7 +100,7 @@ public class ActionBarController : MonoBehaviour
             recoverActionBarRoutineStarted = true;
             localScale = _rectTransform.localScale;
             localScale = _rectTransform.localScale;
-            localScale.x += Time.fixedDeltaTime*value;
+            localScale.x += Time.deltaTime*value;
             localScale.x = Mathf.Min(1, localScale.x);
             _rectTransform.localScale = localScale;
         }
@@ -126,7 +127,7 @@ public class ActionBarController : MonoBehaviour
 
         if ((Time.realtimeSinceStartup - consumeStaminaBarTime) > recoverPulse)
         {
-            RecoverActionBar(0.01f);
+            RecoverActionBar(RecoverSpeed);
         }
         
     }

@@ -325,7 +325,12 @@ public class ChopSticksController : MonoBehaviour, IHittable
                 TransitionTo<PostDefendState>();
                 return;
             }
-            // if(Context.ActionBarController.Consu())
+
+            if (!Context.ActionBarController.ConsumeActionBarContinuously(Context.ChopstickData.DefendStaminaCostPersec))
+            {
+                TransitionTo<PostDefendState>();
+                return;
+            }
 
             m_Timer += Time.deltaTime;
         }

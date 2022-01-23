@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531e469dc2e598b4ab0aa55678b7ba9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreValue: 0
 --- !u!114 &384194793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0948d9f58c7424691c590fa40333dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoverPulse: 0.2
+  RecoverSpeed: 1
 --- !u!1 &733022653
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531e469dc2e598b4ab0aa55678b7ba9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreValue: 0
 --- !u!114 &753292793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0948d9f58c7424691c590fa40333dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoverPulse: 0.2
+  RecoverSpeed: 1
 --- !u!1001 &998209177
 PrefabInstance:
   m_ObjectHideFlags: 0
