@@ -87,10 +87,6 @@ public class ChopsticksNotGetFood : GameEvent
     public Transform HandTransform;
 }
 
-public class ChopsticksBounceBack : GameEvent
-{
-    public Transform HandTransform;
-}
 
 public class Win : GameEvent
 {
