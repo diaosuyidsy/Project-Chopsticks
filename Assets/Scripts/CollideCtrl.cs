@@ -24,13 +24,22 @@ public class CollideCtrl : MonoBehaviour
         
     }
 
-    public void PlayNormal(Transform pos)
+    public void PlayNormal(Vector3 pos)
     {
-        this.transform.position = pos.position;
+        this.transform.position = pos;
         var scal = Random.Range(lowScale,highScale);
         var rota = Random.Range(lowRotation,highRotation);
         bubble.localScale = new Vector3(scal, scal, scal);
         bubble.localEulerAngles = new Vector3(0, 0, rota);
         bubble.GetComponent<Animator>().SetInteger("state",1);
+    }
+    public void PlayPerfect(Vector3 pos)
+    {
+        this.transform.position = pos;
+        var scal = Random.Range(lowScale,highScale);
+        var rota = Random.Range(lowRotation,highRotation);
+        bubble.localScale = new Vector3(scal, scal, scal);
+        bubble.localEulerAngles = new Vector3(0, 0, rota);
+        bubble.GetComponent<Animator>().SetInteger("state",2);
     }
 }
